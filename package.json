@@ -1,0 +1,19 @@
+{
+  "name": "zhangcong",
+  "version": "1.0.0",
+  "description": "cravlar.reader",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "cravler.dongnao"
+  ],
+  "author": "cong",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "images": "^3.0.1",
+    "request": "^2.75.0"
+  }
+}

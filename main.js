@@ -7,39 +7,40 @@ let path = require("path");
 let list = path.resolve('./list');
 let nub=0;
 let Furl = [
-	// "http://www.hao6v.com/dy/",
-	// "http://www.hao6v.com/s/jingdiandianying/",
-	// "http://www.hao6v.com/s/gangtaidianying/",
-	// "http://www.hao6v.com/zy/",
-	// "http://www.hao6v.com/mj/",
-	// "http://www.hao6v.com/rj/",
-	// "http://www.hao6v.com/dlz/",
-	// "http://www.hao6v.com/s/shoujiMP4dianying/",
-	// "http://www.hao6v.com/3D/",
-	// "http://www.hao6v.com/jddy/",
-	// "http://www.hao6v.com/gq/",
-    // "http://www.hao6v.com/zydy/",
+	"http://www.hao6v.com/dy/",
+	"http://www.hao6v.com/s/jingdiandianying/",
+	"http://www.hao6v.com/s/gangtaidianying/",
+	"http://www.hao6v.com/zy/",
+	"http://www.hao6v.com/mj/",
+	"http://www.hao6v.com/rj/",
+	"http://www.hao6v.com/dlz/",
+	"http://www.hao6v.com/s/shoujiMP4dianying/",
+	"http://www.hao6v.com/3D/",
+	"http://www.hao6v.com/jddy/",
+	"http://www.hao6v.com/gq/",
+    "http://www.hao6v.com/zydy/",
 	"http://www.hao6v.com/gydy/"
 ];
 let classifyFile = [
-    // '2017最新电影',
-    // '日韩电影',
-    // '港台电影',
-    // '综艺节目',
-    // '欧美剧',
-    // '日韩剧',
-    // '国剧',
-    // 'MP4手机电影',
-    // '3D电影',
-    // '动画电影',
-    // '经典高清电影',
-    // '微电影',
+    '2017最新电影',
+    '日韩电影',
+    '港台电影',
+    '综艺节目',
+    '欧美剧',
+    '日韩剧',
+    '国剧',
+    'MP4手机电影',
+    '3D电影',
+    '动画电影',
+    '经典高清电影',
+    '微电影',
     '国语配音电影'
   ]
 let t;
 let listData = [
     [],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
 ]
+let getUrl = {}
 function getHtml(url, index, err, name1){
     console.log('indexKS', index , url, err, name1)
     let flag = true
@@ -49,12 +50,13 @@ function getHtml(url, index, err, name1){
         }, 10000)
     }
     t()
-    request({
+    !getUrl[url] && request({
 		url: url,
 		encoding : null // 让body 直接是buffer
     }, function (error, response, body) {
         flag = false
         if (!error && response.statusCode == 200) {
+            getUrl[url] = true
 			body =  iconv.decode(body, 'gb2312');
             let $ = cheerio.load(body + '');
 			let page= $('#main .box .listpage b').eq(0);
@@ -75,7 +77,7 @@ function getHtml(url, index, err, name1){
                     url: item.find('a').attr('href'),
 					name: n2
                 }
-                listData[nub].push(obj)
+                obj.time && obj.title && obj.url && obj.name && listData[nub].push(obj)
 			}
             if (page[0] != page[1]) {
             	console.log('1', Furl[nub], nub)

@@ -12,6 +12,8 @@ let content = path.resolve('./template'); // 存放文件夹
 //读取文件存储数组
 let fileArr = [];
 
+let number = 0
+
 // 排序
 let classifyFile = [
   '2017最新电影',
@@ -50,7 +52,8 @@ function analysis () {
     console.log(i1 + '--->', file.name)
     file.obj.forEach((fileMove, i2) => {
       console.log(i1 + '--->', file.name)
-      if (fileMove.name[0] && fileMove.img && fileMove.time) {
+      if (fileMove.name[0] && fileMove.img && fileMove.time) { // ◎上映日期
+        number++
         fileMove.img = [fileMove.img[0]]
         fileMove.img.forEach((fileImage, i3) => {
           let name = fileImage ? fileImage.split('.') : [];
@@ -81,5 +84,6 @@ function analysis () {
       }
     })
     fs.writeFile(content + '/' + file.name, JSON.stringify(file.obj));
+    console.log('number', number)
   });
 }

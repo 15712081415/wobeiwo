@@ -17,5 +17,14 @@
     "iconv-lite": "^0.4.19",
     "images": "^3.0.1",
     "request": "^2.75.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://15712081415:qwe15986849165@github.com/15712081415/wobeiwo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/15712081415/wobeiwo/issues"
+  },
+  "homepage": "https://github.com/15712081415/wobeiwo#readme"
 }

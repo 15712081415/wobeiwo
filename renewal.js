@@ -101,6 +101,7 @@ function getMovie (fileData) {
       movie.forEach(M => {
         if (M.name[0] == item.name[0]) {
           M.time = item.time
+          M.name[1] = item.name[1] || ''
           data = M
         }
       })
@@ -138,8 +139,9 @@ function getMovie (fileData) {
           }
         })
       })(data)
-      for(let l = 0;l<$('#endText img').length;l++){
-          let str = $('#endText p').eq(l).text()
+      for(let l = 0;l<$('#endText>p').length;l++){
+          let str = $('#endText>p').eq(l).text() || ''
+          // console.log('str', str)
           str.indexOf('◎译　　名') >  -1 && (data['◎译　　名'] = str.split('◎译　　名')[1].split('◎')[0].trim());
           str.indexOf('◎片　　名') >  -1 && (data['◎片　　名'] = str.split('◎片　　名')[1].split('◎')[0].trim());
           str.indexOf('◎年　　代') >  -1 && (data['◎年　　代'] = str.split('◎年　　代')[1].split('◎')[0].trim());
@@ -152,6 +154,18 @@ function getMovie (fileData) {
           str.indexOf('◎主　　演') >  -1 && (data['◎主　　演'] = str.split('◎主　　演')[1].split('◎')[0].trim());
           str.indexOf('◎简　　介') >  -1 && (data['◎简　　介'] = str.split('◎简　　介')[1].split('◎')[0].trim());
       }
+      console.log('年代', data['◎年　　代'])
+      let typeName = []
+      let type = [classifyFile2[classifyFile[t]]]
+      let arr = data['◎类　　别'] ? data['◎类　　别'].split('/') : []
+      arr.forEach((item) => {
+        if (classifyFile2[item]) {
+          type.push(classifyFile2[item])
+          typeName.push(item)
+        }
+      })
+      if (typeName.length == 0) typeName = [classifyFile[t]]
+      data.title = '【' + typeName.join('/') + '】' + (data['◎年　　代'] ? data['◎年　　代'] + ' ' : '') + (data.name[1] ? (data.name[1].indexOf('集') > -1 ? ' 《' + data.name[0] + '》' + data.name[1] : data.name[1] + ' 《' + data.name[0] + '》') : ' 《' + data.name[0] + '》')
       data.download = []
       for(let k=0; k<$('#endText table tr').length;k++){
           let html = $('#endText table tr td').eq(k).html()
@@ -179,7 +193,7 @@ function getMovie (fileData) {
         "<p class='clearfix'><span class='infoCol'>译名： <em>" + (data.name[0] || "--") + "</em></span><span class='infoCol'>年代： <em>" + (data["◎年　　代"] || '--') + "</em></span></p>" +
         "<p class='clearfix'><span class='infoCol'>类别： <em>" + type + "</em></span><span class='infoCol'>语言： <em>" + (data["◎语　　言"] || "--") + "</em></span></p>" +
         "<p class='clearfix'><span class='infoCol'>片长： <em>" + (data["◎片　　长"] || "--") + "</em></span><span class='infoCol'>导演： <em>" + (data["◎导　　演"] ? data["◎导　　演"].split("\n　　　　　　").join("<br />　　　") : "--") + "</em></span></p>" +
-        (data["◎主　　演"] ? "<p class='clearfix mt10'><span class='infoPre'>主演：</span><span class='infoCon'>" + data["◎主　　演"].split("\n　　　　　　").join("<br />") + "</span></p>" : "--" ) +
+        "<p class='clearfix mt10'><span class='infoPre'>主演：</span><span class='infoCon'>" + (data["◎主　　演"] ? data["◎主　　演"].split("\n　　　　　　").join("<br />") + "</span></p>" : "--" ) +
         "<p class='clearfix mt10'><span class='infoPre'>剧情：</span><span class='infoCon'>" + (data["◎简　　介"] || "--") + "</span></p>" +
         "</div>" +
         "<div class='downWrap'>" +

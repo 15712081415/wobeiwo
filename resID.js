@@ -5,37 +5,26 @@ let path = require("path");
 let list = path.resolve('template'); // 列表
 let movieList = require(list + "/movie.json");
 let fileArr = []
-fs.readdir(list,function(err,files) {
-      if (err) {
-          console.log(err);
-          return;
+
+// 回写JSON
+function cbJSON() {
+  let movieType = {} 
+  fileData.forEach(item => {
+    let arr = require(item)
+    arr.forEach((obj, i) => {
+      if (movieType[obj.tages]) {
+        movieType[obj.tages].push(obj)
+      } else {
+        movieType[obj.tages] = [obj]
       }
-      let count = files.length;
-      //console.log(files);
-      let results = {};
-      files.forEach(function (filename) {
-          console.log('url',list + '/' + filename)
-          let obj = list  + '/' + filename;
-          fileArr.push({obj: obj, name: filename});
-      });
-      content()
- });
-function content () {
-	fileArr.forEach(FileUrl => {
-		console.log(1)
-		let file = require(FileUrl.obj)
-		console.log(2)
-		file.forEach(movie => {
-			if (movie.id) {
-				for (let item in movieList) {
-					if (movie.title && movie.title.indexOf(item) > -1) {
-						console.log(item, movie.id)
-						movieList[item] = movie.id
-						console.log(6)
-					}
-				}
-			}
-		})
-	})
-	fs.writeFile(list + '/movie.json', JSON.stringify(movieList));
+    })
+    for (let objs in movieType) {
+      let listJSON = require(list + '/' + objs + '.json')
+      listJSON.concat(movieType[objs])
+      fs.writeFileSync(list + '/' + objs + '.json', JSON.stringify(listJSON));
+    }
+  })
+  fs.writeFileSync(list + '/movie.json', JSON.stringify(movieList));
+  fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
+  console.log('运行结束！！')
 }

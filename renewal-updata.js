@@ -220,7 +220,7 @@ function start (nub = 0) {
                 categories: type, // 分类id
                 tags: [] // 标签id
               };
-              // console.log('g', postData)
+              console.log('g.postArticle------------------------------->')
               g.postArticle(postData, res => {
                 console.log('提交成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], fileData.length > nub + 1)
                 fileMove.id = res.id

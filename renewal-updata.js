@@ -192,6 +192,7 @@ function start (nub = 0) {
               date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
               date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
             }
+            console.log('g.postArticle------------------------------->')
             g.postArticle(postData, res => {
               console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
               updataID.push(res.id)

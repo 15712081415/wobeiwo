@@ -10,8 +10,8 @@
 		<h2 class="l_h2_tit">热门电影</h2>
 		<ul class="l_item_list">
 		<?php
-			$posin = array_slice( $sticky, 0, 4);
-			query_posts(array('post__in' => $posin, 'posts_per_page' => 4));
+			$posin = array_slice( $sticky, 0, 10);
+			query_posts(array('post__in' => $posin, 'posts_per_page' => 3));
 			if(have_posts()) : while (have_posts()) : the_post();
 		?>
 		<li class="l_item"><a href="<?php the_permalink() ?>"><img src="<?php echo catch_first_image(); ?>" onerror="javascript:this.src='<?php echo $template_url; ?>/images/nophoto.gif'" alt="<?php the_title(); ?>"><span class="l_i_tit"><?php the_title(); ?></span></a></li>
@@ -69,7 +69,7 @@
 		<h2 class="l_h2_tit">电视剧推荐</h2>
 		<ul class="l_item_list">
 		<?php
-			query_posts('cat=10&posts_per_page=4');
+			query_posts('cat=10&posts_per_page=3');
 			if(have_posts()) : while (have_posts()) : the_post();
 		?>
 		<li class="l_item"><a href="<?php the_permalink() ?>"><img src="<?php echo catch_first_image(); ?>" onerror="javascript:this.src='<?php echo $template_url; ?>/images/nophoto.gif'" alt="<?php the_title(); ?>"><span class="l_i_tit"><?php the_title(); ?></span></a></li>

@@ -45,7 +45,13 @@ function addToFavorite() {
   alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
     }
 }
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dd869d3a2019ed02eabf778bc7d51c74";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
 </script>
-<?php echo get_num_queries(); ?>
 </body>
 </html>

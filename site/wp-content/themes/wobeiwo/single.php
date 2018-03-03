@@ -43,10 +43,10 @@
 				</ul>
 			</div>
 			<div class="comments-area">
-			<!-- UY BEGIN -->
+			<!-- UY BEGIN
 			<div id="uyan_frame"></div>
 			<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
-			<!-- UY END -->
+			UY END -->
 			</div>
 		</div>
 	</div>

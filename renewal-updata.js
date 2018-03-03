@@ -239,11 +239,10 @@ function start (nub = 0) {
           } else if (fileData.length > nub + 1) {
             start(nub + 1)
           } else {
-            console.log('结束！！')
             cbJSON()
           }
         }
-      }, 2000)
+      }, 5000)
     }
   }
 }

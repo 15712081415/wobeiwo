@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>WordPress &#8250; Test</title>
+</head>
+<body>
+<input type="button" name="submit" id="subBtn" value="提交文章" />
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+$('#subBtn').click(function(){
+	var url = 'http://localhost:81/wordpress/wp-json/wp/v2/'
+	var uinfo = {username: 'lonny', password: '123456'}
+	var token = ''
+	// let url = 'http://localhost:81/nodejs/movie.json'
+	var data = {
+		slug: 'mytest',
+		title: '11黄智贤：吴赖共识有，九二共识无11',
+		content: '所以，真的，吴敦义跟赖清德见面，需要十指紧扣，需要90度鞠躬。\n因为吴赖一家亲，共识了。\n我是小人物，没当过党主席。\n实在也不知道，自己党创立的中华民国，被对方吃乾抹净到只剩一层皮。\n自己党被追杀抄家时，是不是没有十指紧扣，90度鞠躬和吴赖共识，就不叫做有格局 ?',
+		link: 'http://localhost:81/wordpress/20171029_18.html',
+		name: '杀手不冷',
+		status: 'publish',
+		type: 'post',
+		date: '2017-11-05T10:07:46.847Z',
+		date_gmt: '2017-11-05T10:07:46.847Z',
+		author: 1,
+		post_format: 'sticky',
+		comment_status: 'open',
+		featured_media: 13,
+		ping_status: 'closed',
+		sticky: true,
+		meta: [],
+		categories: [1],
+		tags: [4]
+	}
+	$.ajax({
+	　　url:"http://localhost:81/wordpress/wp-json/jwt-auth/v1/token",
+	　　method:"POST",
+	　　data: uinfo,
+	　　success:function(res){
+	　　　　console.log('res:'+res);
+			token = res.token;
+	　　　　$.ajax({
+	　　　　　　url: url+'posts',
+	　　　　　　method:"POST",
+	　　　　　　beforeSend: function(xhr) {
+	　　　　　　　　xhr.setRequestHeader("Authorization", "Bearer " + token);
+	　　　　　　},
+	　　　　　　data: data,
+	　　　　　　success:function(result){
+	　　　　　　　　console.log('result:'+result);
+	　　　　　　},
+	　　　　　　error:function(result){
+	　　　　　　　　console.log('result:'+result);
+	　　　　　　}
+	　　　　});
+	　　},
+	　　error:function(res){
+	　　　　console.log('res:'+res);
+	　　}
+	});
+})
+</script>
+</body>
+</html>

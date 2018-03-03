@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <title>wordpress演示站</title>
+    <meta name="keywords" content="wordpress演示站" />
+    <meta name="description" content="又一个WordPress站点" />
+    <link href="http://localhost:81/wordpress/wp-content/themes/wobeiwo/css/style.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="https://api.w.org/" href="/wp-json/">
+</head>
+
+<body>
+<div class="header">
+	<div class="clearfix pr">
+		<div class="fl head_logo">
+                            <h1>
+                    <a href="http://localhost:81/wordpress" title="wordpress演示站"><img src="http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/logo.png" alt="wordpress演示站" /></a>
+                </h1>
+            		</div>
+		<div class="clearfix fl head_search">
+			<div class="clearfix fl h_s_box">
+				<form target="_blank" action="http://localhost:81/wordpress" method="get" onSubmit="javascript:if(this.s.value=='') return false;">
+					<span class="fl s_l">
+						<select class="s_where"><option>站内</option></select>
+                        <!-- <span class="s_where">站内</span> -->
+						<input type="text" name="s" class="keywords" maxlength="50" value="" placeholder="请输入关键字" onFocus="this.style.width='280px';" onBlur="if(this.value == ''){this.style.width='';}" />
+					</span>
+					<span class="fl s_r"><input type="submit" class="s_btn" value="搜索" /></span>
+				</form>
+			</div>
+			<div class="h_s_words fl">
+			<p>
+							</p>
+			</div>
+		</div>
+		<a href="javascript:;" onclick="JavaScript:addToFavorite()" class="add_fav">加入收藏夹</a>
+	</div>
+	<div class="head_menu">
+		<p class="m1">
+            <a href="http://localhost:81/wordpress" >首页</a>
+                        <a href="http://localhost:81/wordpress/category/2017最新电影">2017最新电影</a>
+            <a href="http://localhost:81/wordpress/category/3D电影">3D电影</a>
+            <a href="http://localhost:81/wordpress/category/MP4手机电影">MP4手机电影</a>
+            <a href="http://localhost:81/wordpress/category/动画电影">动画电影</a>
+            <a href="http://localhost:81/wordpress/category/国剧">国产连续剧</a>
+            <a href="http://localhost:81/wordpress/category/国语配音电影">国语配音电影</a>
+            <a href="http://localhost:81/wordpress/category/微电影">微电影</a>
+            <a href="http://localhost:81/wordpress/category/日韩剧">日韩剧</a>
+            <a href="http://localhost:81/wordpress/category/日韩电影">日韩电影</a>
+            <a href="http://localhost:81/wordpress/category/欧美剧">欧美剧</a>
+            <a href="http://localhost:81/wordpress/category/港台电影">港台电影</a>
+            <a href="http://localhost:81/wordpress/category/经典高清电影">经典高清电影</a>
+            <a href="http://localhost:81/wordpress/category/综艺节目">综艺节目</a>
+		</p>
+        <p class="m2">专题分类：
+            <a href="http://localhost:81/wordpress/category/爱情">爱情</a>
+            <a href="http://localhost:81/wordpress/category/科幻">科幻</a>
+            <a href="http://localhost:81/wordpress/category/神秘">神秘</a>
+            <a href="http://localhost:81/wordpress/category/喜剧">喜剧</a>
+            <a href="http://localhost:81/wordpress/category/战争">战争</a>
+            <a href="http://localhost:81/wordpress/category/恐怖">惊悚</a>
+            <a href="http://localhost:81/wordpress/category/恐怖">恐怖</a>
+            <a href="http://localhost:81/wordpress/category/幻想">幻想</a>
+            <a href="http://localhost:81/wordpress/category/奇幻">奇幻</a>
+            <a href="http://localhost:81/wordpress/category/历史">历史</a>
+            <a href="http://localhost:81/wordpress/category/动作">动作</a>
+            <a href="http://localhost:81/wordpress/category/剧情">剧情</a>
+            <a href="http://localhost:81/wordpress/category/冒险">冒险</a>
+            <a href="http://localhost:81/wordpress/category/传记">传记</a>
+            <a href="http://localhost:81/wordpress/category/纪录">纪录</a>
+        </p>
+	</div>
+</div>
+<div class="wrapper clearfix">
+	<div class="wrap_l fl">
+		<h2 class="l_h2_tit">热门电影</h2>
+		<ul class="l_item_list">
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_22037.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/0_5324_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【剧情/喜剧】[01- 1080p.HD国语中字 《坑爹游戏》"><span class="l_i_tit">【剧情/喜剧】[01- 1080p.HD国语中字 《坑爹游戏》</span></a></li>
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_22036.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/0_5323_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【剧情/奇幻】[01- 1080p.BD中英双字 《圣鹿之死》"><span class="l_i_tit">【剧情/奇幻】[01- 1080p.BD中英双字 《圣鹿之死》</span></a></li>
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_22035.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/0_5322_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【科幻】[01- 1080p.BD中英双字 《这个男人来自地球：全新纪》"><span class="l_i_tit">【科幻】[01- 1080p.BD中英双字 《这个男人来自地球：全新纪》</span></a></li>
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_22034.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/0_5321_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【剧情/动作/历史】[01- 720p.国俄双语.HD中字 《维京：王者之战》"><span class="l_i_tit">【剧情/动作/历史】[01- 720p.国俄双语.HD中字 《维京：王者之战》</span></a></li>
+				</ul>
+	</div>
+	
+	<div class="wrap_m fl">
+		<div class="l_h2_tit clearfix"><h2 class="fl"><a href="http://localhost:81/wordpress/category/2017最新电影">最新电影</a></h2><a href="http://localhost:81/wordpress/category/2017最新电影" class="fr">更多&gt;&gt;</a></div>
+		<ul class="l_item_list">
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22037.html">【剧情/喜剧】[01- 1080p.HD国语中字 《坑爹游戏》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22036.html">【剧情/奇幻】[01- 1080p.BD中英双字 《圣鹿之死》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22035.html">【科幻】[01- 1080p.BD中英双字 《这个男人来自地球：全新纪》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22034.html">【剧情/动作/历史】[01- 720p.国俄双语.HD中字 《维京：王者之战》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22033.html">【剧情/动作】[01- 720p.HD中字 《铁雨/钢铁雨》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22031.html">【剧情】[01- HD国语中字1280高清 《这里没有硝烟》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22030.html">【喜剧】[01- 720p.BD中英双字 《厕所：一个爱的故事》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22029.html">【动作/科幻】[01- 1080p.国英双语.BD中英双字 《全球风暴》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22028.html">【剧情/历史/冒险】[01- 720p.BD中字 《太空第一步》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22027.html">【动作/科幻】[01- 1080p.BD中英双字 《太空救援》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22024.html">【恐怖】[01- 720p.HD中字 《苌山虎/仿声灵》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22022.html">【科幻】[01- 720p.HD中英双字 《伊甸园计划 第一卷》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22021.html">【动作/科幻】[01- 1080p.国英双语.BD中英双字 《全球风暴》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22020.html">【剧情/历史/冒险】[01- 720p.BD中字 《太空第一步》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22019.html">【动作/科幻】[01- 1080p.BD中英双字 《太空救援》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22016.html">【恐怖】[01- 720p.HD中字 《苌山虎/仿声灵》</a><span>2018-01-21</span></li>
+				</ul>
+		
+		<h2 class="l_h2_tit"><a href="http://localhost:81/wordpress/category/国剧">最新国产剧</a><a href="http://localhost:81/wordpress/category/国剧" class="fr">更多&gt;&gt;</a></h2>
+		<ul class="l_item_list">
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21999.html">【剧情】[01-  《我的青春遇见你》更新第30集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21997.html">【国剧】[01-  《爱回家之开心速递》更新第239集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21996.html">【国剧】[01-  《新寻秦记》更新第08集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21989.html">【国剧】[01-  《艳骨》更新第44集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21988.html">【剧情/喜剧/爱情】[01- 第二季12 《龙日一，你死定了》</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21987.html">【国剧】[01-  《恋爱先生》更新第14集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21986.html">【国剧】[01-  《恋爱先生》更新第14集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21985.html">【剧情/动作】[01-  《莫斯科行动》更新第23集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21984.html">【剧情/动作】[01-  《莫斯科行动》更新第23集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21975.html">【国剧】[01-  《警犬来啦》更新第12集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21974.html">【国剧】[01-  《警犬来啦》更新第12集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21973.html">【国剧】[01-  《幸福，近在咫尺》更新第08集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21972.html">【国剧】[01-  《平安谷之诡谷传说》更新第05集</a><span>2018-01-21</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180102_6363.html">【国剧】2018  《琅琊榜之风起长林》更新第20集</a><span>2018-01-2</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180102_6364.html">【剧情】2018  《夸世代》更新第41集</a><span>2018-01-2</span></li>
+					<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180102_6365.html">【国剧】2018  《红蔷薇》更新第30集</a><span>2018-01-2</span></li>
+				</ul>
+	</div>
+	<div class="wrap_r fl">
+		<h2 class="l_h2_tit">精选电影专题</h2>
+		<ul class="l_item_list">
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22037.html">【剧情/喜剧】[01- 1080p.HD国语中字 《坑爹游戏》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22036.html">【剧情/奇幻】[01- 1080p.BD中英双字 《圣鹿之死》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22035.html">【科幻】[01- 1080p.BD中英双字 《这个男人来自地球：全新纪》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22034.html">【剧情/动作/历史】[01- 720p.国俄双语.HD中字 《维京：王者之战》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22033.html">【剧情/动作】[01- 720p.HD中字 《铁雨/钢铁雨》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22031.html">【剧情】[01- HD国语中字1280高清 《这里没有硝烟》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22030.html">【喜剧】[01- 720p.BD中英双字 《厕所：一个爱的故事》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22029.html">【动作/科幻】[01- 1080p.国英双语.BD中英双字 《全球风暴》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22028.html">【剧情/历史/冒险】[01- 720p.BD中字 《太空第一步》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22027.html">【动作/科幻】[01- 1080p.BD中英双字 《太空救援》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22024.html">【恐怖】[01- 720p.HD中字 《苌山虎/仿声灵》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22022.html">【科幻】[01- 720p.HD中英双字 《伊甸园计划 第一卷》</a></li>
+					</ul>
+		<h2 class="l_h2_tit">下载排行榜</h2>
+		<ul class="l_item_list">
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22037.html">【剧情/喜剧】[01- 1080p.HD国语中字 《坑爹游戏》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22036.html">【剧情/奇幻】[01- 1080p.BD中英双字 《圣鹿之死》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22035.html">【科幻】[01- 1080p.BD中英双字 《这个男人来自地球：全新纪》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22034.html">【剧情/动作/历史】[01- 720p.国俄双语.HD中字 《维京：王者之战》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22033.html">【剧情/动作】[01- 720p.HD中字 《铁雨/钢铁雨》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22031.html">【剧情】[01- HD国语中字1280高清 《这里没有硝烟》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22030.html">【喜剧】[01- 720p.BD中英双字 《厕所：一个爱的故事》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22029.html">【动作/科幻】[01- 1080p.国英双语.BD中英双字 《全球风暴》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22028.html">【剧情/历史/冒险】[01- 720p.BD中字 《太空第一步》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22027.html">【动作/科幻】[01- 1080p.BD中英双字 《太空救援》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22024.html">【恐怖】[01- 720p.HD中字 《苌山虎/仿声灵》</a></li>
+							<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22022.html">【科幻】[01- 720p.HD中英双字 《伊甸园计划 第一卷》</a></li>
+					</ul>
+	</div>
+</div>
+
+<div class="mid_ad"><img src="" width="1000" height="120"></div>
+
+<div class="wrapper clearfix">
+	<div class="wrap_l fl">
+		<h2 class="l_h2_tit">电视剧推荐</h2>
+		<ul class="l_item_list">
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_21999.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/6_1813_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【剧情】[01-  《我的青春遇见你》更新第30集"><span class="l_i_tit">【剧情】[01-  《我的青春遇见你》更新第30集</span></a></li>
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_21997.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/6_1812_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【国剧】[01-  《爱回家之开心速递》更新第239集"><span class="l_i_tit">【国剧】[01-  《爱回家之开心速递》更新第239集</span></a></li>
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_21996.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/6_1811_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【国剧】[01-  《新寻秦记》更新第08集"><span class="l_i_tit">【国剧】[01-  《新寻秦记》更新第08集</span></a></li>
+				<li class="l_item"><a href="http://localhost:81/wordpress/20180121_21989.html"><img src="http://p241z2z4x.bkt.clouddn.com/2018-01/6_1810_0.jpg" onerror="javascript:this.src='http://localhost:81/wordpress/wp-content/themes/wobeiwo/images/nophoto.gif'" alt="【国剧】[01-  《艳骨》更新第44集"><span class="l_i_tit">【国剧】[01-  《艳骨》更新第44集</span></a></li>
+				</ul>
+	</div>
+	<div class="wrap_m fl" style="width:39%">
+		<div class="tab_box">
+			<div class="l_h2_tit tabs clearfix">
+				<h2 class="fl cur_tab"><a href="http://localhost:81/wordpress/category/经典高清电影">高清电影</a></h2>
+				<h2 class="fl"><a href="http://localhost:81/wordpress/category/3D电影">3D电影</a></h2>
+			</div>
+			<ul class="l_item_list mid">
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22026.html">【喜剧】[01- 720p.国粤双语.BD中字 《破事儿》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22025.html">【经典高清电影】[01- 720p.BD中字 《筑地仙境》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22023.html">【剧情】[01- 720p.HD中字 《天文馆/巴洛姐妹》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22018.html">【喜剧】[01- 720p.国粤双语.BD中字 《破事儿》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22017.html">【经典高清电影】[01- 720p.BD中字 《筑地仙境》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_22015.html">【剧情】[01- 720p.HD中字 《天文馆/巴洛姐妹》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21961.html">【冒险】[01- 1080p.HD国语中字 《小巨人》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21952.html">【经典高清电影】[01- 720p.HD中字 《以女儿之名》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21951.html">【经典高清电影】[01- 720p.HD中字 《炙热》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21949.html">【经典高清电影】[01- BD英语无字 《流浪巴黎》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21922.html">【喜剧】[01- 720p.国粤双语.BD中字 《破事儿》</a><span>2018-01-21</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20180121_21921.html">【经典高清电影】[01- 720p.BD中字 《筑地仙境》</a><span>2018-01-21</span></li>
+						</ul>
+			<ul class="l_item_list mid none">
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171207_5210.html">【动作/科幻】2017 左右3D版 《终结者2:审判日》</a><span>2017-12-7</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171207_5211.html">【冒险】2017 左右3D版 《冰雪女王3:火与冰》</a><span>2017-12-7</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171207_5209.html">【动作/科幻/冒险】2017 左右3D版 《星际特工:千星之城》</a><span>2017-12-7</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171110_5212.html">【喜剧/冒险】2017 左右3D版 《赛车总动员3:极速挑战》</a><span>2017-11-10</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171029_5213.html">【剧情/动作/科幻】2017 左右3D版 《猩球崛起3：终极之战》</a><span>2017-10-29</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171029_5214.html">【动作/科幻/冒险】2017 左右3D版 《蜘蛛侠:英雄归来》</a><span>2017-10-29</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171029_5215.html">【动作/奇幻/冒险】2017 左右3D版 《新木乃伊》</a><span>2017-10-29</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171029_5216.html">【动作/科幻】2017 左右3D版 《变形金刚5》</a><span>2017-10-29</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170928_5217.html">【奇幻/冒险】2017 左右3D版 《勇士之门》</a><span>2017-09-28</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170927_5218.html">【喜剧/冒险】2017 左右3D版 《神偷奶爸3》</a><span>2017-09-27</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170922_5219.html">【动作/奇幻/冒险】2017 左右3D版 《加勒比海盗5》</a><span>2017-09-22</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170913_5223.html">【动作/奇幻/冒险】2017 左右3D版 《亚瑟王：斗兽争霸》</a><span>2017-09-13</span></li>
+						</ul>
+		</div>
+		<div class="tab_box bt">
+			<div class="l_h2_tit tabs clearfix">
+				<h2 class="fl cur_tab"><a href="http://localhost:81/wordpress/category/港台电影">港台电影</a></h2>
+				<h2 class="fl"><a href="http://localhost:81/wordpress/category/日韩电影">日韩电影</a></h2>
+			</div>
+			<ul class="l_item_list mid">
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171223_14559.html">【奇幻】2017 720p.HD国语 《奇门遁甲》</a><span>2017-12-23</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171219_14560.html">【港台电影】2017 720p.HD中字 《曼菲》</a><span>2017-12-19</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171219_14561.html">【港台电影】2017 1080p.国粤双语.BD中字 《常在你左右》</a><span>2017-12-19</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171206_14562.html">【港台电影】2017 720p.HD国语中字 《红衣小女孩2》</a><span>2017-12-6</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171202_14563.html">【港台电影】2017 720p.BD中字 《海报师：阮大勇的插画艺术》</a><span>2017-12-2</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171126_14564.html">【港台电影】2017 720p.HD中字 《日常对话》</a><span>2017-11-26</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171112_14566.html">【港台电影】2017 720p.国粤双语.BD中字 《西谎极落之太爆太子太空舱》</a><span>2017-11-12</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171109_14565.html">【港台电影】2017 720p.国粤双语.BD中字 《爆裂刑警》</a><span>2017-11-9</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170922_14570.html">【港台电影】2017 720p.国粤双语.BD中字 《喵星人》</a><span>2017-09-22</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170820_14567.html">【喜剧】2017 720p.HD粤语中字 《我老婆不是人》</a><span>2017-08-20</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170820_14568.html">【喜剧】2017 720p.HD粤语中字 《吉星拱照/吉星高照》</a><span>2017-08-20</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20170811_14569.html">【港台电影】2017 720p.BD国语中字 《目击者之追凶》</a><span>2017-08-11</span></li>
+						</ul>
+			<ul class="l_item_list mid none">
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171231_12510.html">【日韩电影】2017 720p.HD中字 《记忆之夜》</a><span>2017-12-31</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171228_12525.html">【日韩电影】2017 720p.国日粤三语.BD中字 《名侦探柯南剧场版21：唐红的恋歌》</a><span>2017-12-28</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171225_12511.html">【日韩电影】2017 720p.HD中字 《一定要抓住》</a><span>2017-12-25</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171224_12512.html">【日韩电影】2017 720p.HD中字 《剩余的爱》</a><span>2017-12-24</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171223_12513.html">【日韩电影】2017 1080p.HD中字 《两道光:Relumino》</a><span>2017-12-23</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171206_12514.html">【日韩电影】2017 720p.BD中字 《帝一之国》</a><span>2017-12-6</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171125_12743.html">【日韩电影】2017 720p.BD中字 《熔炉》</a><span>2017-11-25</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171125_12527.html">【日韩电影】2017 720p.国粤日三语.BD中字 《蜡笔小新：宇宙人来袭》</a><span>2017-11-25</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171124_12515.html">【日韩电影】2017 720p.BD中字 《我们是X》</a><span>2017-11-24</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171123_12516.html">【日韩电影】2017 720p.BD中字 《真白之恋》</a><span>2017-11-23</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171119_12517.html">【日韩电影】2017 720p.HD中字 《女演员今天也》</a><span>2017-11-19</span></li>
+							<li class="l_item clearfix"><a href="http://localhost:81/wordpress/20171116_12518.html">【日韩电影】2017 720p.HD中字 《琉璃庭院》</a><span>2017-11-16</span></li>
+						</ul>
+		</div>
+	</div>
+	<div class="wrap_r fl" style="width:39%">
+		<div class="tab_box">
+			<div class="l_h2_tit tabs clearfix">
+				<h2 class="fl cur_tab"><a href="http://localhost:81/wordpress/category/日韩剧">日韩剧</a></h2>
+				<h2 class="fl"><a href="http://localhost:81/wordpress/category/欧美剧">欧美剧</a></h2>
+			</div>
+			<ul class="l_item_list">
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21965.html">【日韩剧】[01-  《相棒16》更新第12集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171231_11965.html">【日韩剧】2017  《Signal/信号》全集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171229_11966.html">【日韩剧】2017  《3月的狮子》更新第33集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171227_11967.html">【日韩剧】2017  《黑色五叶草》更新第13集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171226_11968.html">【日韩剧】2017  《小松先生》更新第13集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171226_11969.html">【日韩剧】2017  《民众之敌》全集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171226_11970.html">【日韩剧】2017  《陆王》全集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171224_11971.html">【日韩剧】2017  《魔法使的新娘》更新第12集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171223_11972.html">【日韩剧】2017  《产科医鸿鸟2》全集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171223_11973.html">【日韩剧】2017  《新宿SEVEN》全集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171221_11974.html">【日韩剧】2017  《监狱的公主》全集</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171219_11975.html">【日韩剧】2017  《现在开始威胁你》全集</a></li>
+							</ul>
+			<ul class="l_item_list none">
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22013.html">【剧情/动作】[01- 第五季[更新高清12] 《芝加哥警署》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22012.html">【欧美剧】[01- 第五季[更新高清13] 《金色年代》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22011.html">【欧美剧】[01- 第十一季[更新高清03] 《X档案》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22010.html">【欧美剧】[01- 第一季[更新高清06] 《幻想快乐》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22009.html">【欧美剧】[01- 第二季[更新高清10] 《河谷镇》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22008.html">【喜剧】[01- 第二季[更新高清13] 《美式主妇》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22007.html">【欧美剧】[01- 第九季[更新高清13] 《摩登家庭》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22006.html">【欧美剧】[01- 第二季[更新高清01] 《美国犯罪故事》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22005.html">【欧美剧】[01- 第二季[更新高清13] 《无言有爱》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22004.html">【欧美剧】[01- 第五季[更新高清09] 《维京传奇》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22003.html">【欧美剧】[01- 第五季[更新高清11] 《如此一家人》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22002.html">【欧美剧】[01- 第一季[更新高清12] 《海豹突击队》</a></li>
+							</ul>
+		</div>
+		<div class="tab_box bt">
+			<div class="l_h2_tit tabs clearfix">
+				<h2 class="fl cur_tab"><a href="http://localhost:81/wordpress/category/动画电影">动画电影</a></h2>
+				<h2 class="fl"><a href="http://localhost:81/wordpress/category/MP4手机电影">MP4手机电影</a></h2>
+			</div>
+			<ul class="l_item_list">
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_22032.html">【动画电影】[01- TC中字 《烟花》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21950.html">【动画电影】[01- 720p.BD中字 《宣告黎明的露之歌》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21943.html">【动画电影】[01- 720p.BD中字 《精灵宝可梦：就决定是你了》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21928.html">【动画电影】[01- TC中字 《烟花》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21904.html">【动画电影】[01- 720p.BD中字 《宣告黎明的露之歌》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21897.html">【动画电影】[01- 720p.BD中字 《精灵宝可梦：就决定是你了》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180121_21882.html">【动画电影】[01- TC中字 《烟花》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171228_5551.html">【动画电影】2017 720p.国日粤三语.BD中字 《名侦探柯南剧场版21：唐红的恋歌》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171225_5552.html">【喜剧/动作/冒险】2017 1080p.BD中字 《乐高幻影忍者大电影》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171223_5553.html">【科幻/冒险】2017 1080p.国日双语.HD中字 《刀剑神域：序列之争剧场版》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171222_5554.html">【动作/科幻】2017 1080p.HD国语中字 《钢铁飞龙之再见奥特曼》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171208_5555.html">【科幻】2017 720p.日粤双语.BD中字 《虐杀器官》</a></li>
+							</ul>
+			<ul class="l_item_list none">
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180102_9410.html">【MP4手机电影】2018 720p.BD中字 《起跑线》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20180101_9411.html">【MP4手机电影】2018 720p.BD中字 《每分钟120击》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171231_9412.html">【MP4手机电影】2017 720p.HD中字 《记忆之夜》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171231_9456.html">【喜剧】2017 720p.国英双语.BD中英双字 《我的爸爸是森林之王》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171230_9413.html">【MP4手机电影】2017 1080p.HD国语中字 《昆塔：反转星球》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171230_9430.html">【MP4手机电影】2017 TC国语中字 《寻梦环游记》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171229_9506.html">【MP4手机电影】2017 1080p.BD中英双字 《英伦对决》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171228_9486.html">【MP4手机电影】2017 4K.国语双语.HD中字 《银翼杀手2049》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171228_9503.html">【MP4手机电影】2017 720p.国日粤三语.BD中字 《名侦探柯南剧场版21：唐红的恋歌》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171228_9414.html">【MP4手机电影】2017 1080p.BD中字 《权力的游戏：征服与反抗》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171227_9415.html">【MP4手机电影】2017 BD中字 《韦罗妮卡》</a></li>
+									<li class="r_item"><a href="http://localhost:81/wordpress/20171227_9416.html">【MP4手机电影】2017 1080p.HD中英双字 《泥土之界》</a></li>
+							</ul>
+		</div>
+	</div>
+</div>
+<script src="http://localhost:81/wordpress/wp-content/themes/wobeiwo/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.tabs h2').hover(function(){
+			var index = $(this).index();
+			$(this).parent().find('h2').removeClass('cur_tab');
+			$(this).addClass('cur_tab');
+			$(this).parent().parent().find('.l_item_list').hide();
+			$(this).parent().parent().find('.l_item_list').eq(index).show();
+		});
+	})
+</script>
+
+<div class="friend_links">
+	<h2>友情链接</h2>
+	<ul class="links">
+    <li><a href="http://www.todaytw.com/">今日台湾网</a></li>
+		</ul>
+</div>
+
+<div class="footer">
+	<p class="copyright">本网站提供新影视资源均系收集各大网站，本网站只提供web页面浏览服务，并不提供影片资源存储，也不参与任何视频录制、上传若本站收集的节目无意侵犯了贵司版权，请给2251209984@qq.com邮箱地址来信，我们将在第一时间删除相应资源 <a href="http://www.miitbeian.gov.cn/" rel="nofollow" title="工业和信息化部ICP/IP地址/域名信息备案管理系统"></a></p>
+	<p>Copyright © 2015-2018 <a href="">wordpress演示站</a> All Rights Reserved.</p>
+</div>
+
+<script type="text/javascript">
+function addToFavorite() {
+    var url = window.location;
+    var title = document.title;
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf("360se") > -1) {
+        alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！");
+    }
+    else if (ua.indexOf("msie 8") > -1) {
+        window.external.AddToFavoritesBar(url, title); //IE8
+    }
+    else if (document.all) {
+  try{
+   window.external.addFavorite(url, title);
+  }catch(e){
+   alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+  }
+    }
+    else if (window.sidebar) {
+        window.sidebar.addPanel(title, url, "");
+    }
+    else {
+  alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+    }
+}
+</script>
+82</body>
+</html>
+
+<!-- Dynamic page generated in 3.141 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2018-01-21 16:26:17 -->
+
+<!-- Compression = gzip -->

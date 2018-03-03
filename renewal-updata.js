@@ -259,6 +259,7 @@ function cbJSON() {
     for (let obj in movieType) {
       let listJSON = require(list + '/' + obj + '.json')
       listJSON.concat(movieType[obj])
+      console.log(obj, movieType[obj])
       fs.writeFileSync(list + '/' + obj + '.json', JSON.stringify(listJSON));
     }
   })

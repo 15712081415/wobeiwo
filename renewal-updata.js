@@ -164,82 +164,84 @@ function start (nub = 0) {
   function analysis (file) {
     file.length > 0 && forEach1(file[0], 0)
     function forEach1 (fileMove, i1) {
-      if (fileMove.name && fileMove.name[0] && fileMove.time) {
-        let typeName = []
-        let type = [classify[fileMove.tages]]
-        let arr = fileMove['◎类　　别'] ? fileMove['◎类　　别'].split('/') : []
-        arr.forEach((item) => {
-          if (classify[item]) {
-            type.push(classify[item])
-            typeName.push(item)
-          }
-        })
-        if (typeName.length == 0) typeName = [fileMove.tages]
-        let title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
-        let title1 = (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
-        for (let titleName in movieList) {
-          if (titleName.indexOf('《' + fileMove.name[0] + '》') > -1 && (fileMove.name[1].split('更新')[0] ? titleName.indexOf(fileMove.name[1].split('[')[0]) > -1 : true)) {
-                fileMove.id = movieList[titleName][0]
-                console.log('已入库', titleName, fileMove.id)
+      setTimeout(() => {
+        if (fileMove.name && fileMove.name[0] && fileMove.time) {
+          let typeName = []
+          let type = [classify[fileMove.tages]]
+          let arr = fileMove['◎类　　别'] ? fileMove['◎类　　别'].split('/') : []
+          arr.forEach((item) => {
+            if (classify[item]) {
+              type.push(classify[item])
+              typeName.push(item)
             }
-        }
-        if (fileMove.id) {
-          let postData = {
-            id: fileMove.id,
-            title: title,
-            content: fileMove.html,
-            date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
-            date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
-          }
-          g.postArticle(postData, res => {
-            console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
-            updataID.push(res.id)
-            forEachData()
-          }, err => {
-            console.log('修改失败', err.data)
-            forEachData()
           })
-        } else {
-           let postData = {
-              slug: fileMove.name[0],
+          if (typeName.length == 0) typeName = [fileMove.tages]
+          let title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
+          let title1 = (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
+          for (let titleName in movieList) {
+            if (titleName.indexOf('《' + fileMove.name[0] + '》') > -1 && (fileMove.name[1].split('更新')[0] ? titleName.indexOf(fileMove.name[1].split('[')[0]) > -1 : true)) {
+                  fileMove.id = movieList[titleName][0]
+                  console.log('已入库', titleName, fileMove.id)
+              }
+          }
+          if (fileMove.id) {
+            let postData = {
+              id: fileMove.id,
               title: title,
-              content: fileMove.html, // fileMove.html
-              name: fileMove.name[0], // 标题名称
-              status: 'publish', // 发布状态 publish, future, draft, pending, private
-              type: 'post',
+              content: fileMove.html,
               date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
-              date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(), // 发布时间
-              author: 1, // 作者id
-              comment_status: 'open', // 是否开放评论 open, closed
-              // featured_media: 13, // 特色图片id
-              ping_status: 'closed',
-              sticky: false, // 置顶
-              meta: [],
-              categories: type, // 分类id
-              tags: [] // 标签id
-            };
-            // console.log('g', postData)
+              date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
+            }
             g.postArticle(postData, res => {
-              console.log('提交成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], fileData.length > nub + 1)
-              fileMove.id = res.id
-              movieList[title1] = [res.id, classify[fileMove.tages]]
+              console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
+              updataID.push(res.id)
+              forEachData()
+            }, err => {
+              console.log('修改失败', err.data)
               forEachData()
             })
-        }
-      } else {
-        forEachData()
-      }
-      function forEachData () {
-        console.log('forEachData:', file.length + '>' + (i1 + 1), fileData.length + '>' + (nub + 1))
-        if (file.length > i1 + 1) {
-          forEach1(file[i1 + 1], i1 + 1)
-        } else if (fileData.length > nub + 1) {
-          start(nub + 1)
+          } else {
+            let postData = {
+                slug: fileMove.name[0],
+                title: title,
+                content: fileMove.html, // fileMove.html
+                name: fileMove.name[0], // 标题名称
+                status: 'publish', // 发布状态 publish, future, draft, pending, private
+                type: 'post',
+                date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
+                date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(), // 发布时间
+                author: 1, // 作者id
+                comment_status: 'open', // 是否开放评论 open, closed
+                // featured_media: 13, // 特色图片id
+                ping_status: 'closed',
+                sticky: false, // 置顶
+                meta: [],
+                categories: type, // 分类id
+                tags: [] // 标签id
+              };
+              // console.log('g', postData)
+              g.postArticle(postData, res => {
+                console.log('提交成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], fileData.length > nub + 1)
+                fileMove.id = res.id
+                movieList[title1] = [res.id, classify[fileMove.tages]]
+                forEachData()
+              })
+          }
         } else {
-          console.log('结束！！')
-          cbJSON()
+          forEachData()
         }
-      }
+        function forEachData () {
+          console.log('forEachData:', file.length + '>' + (i1 + 1), fileData.length + '>' + (nub + 1))
+          if (file.length > i1 + 1) {
+            forEach1(file[i1 + 1], i1 + 1)
+          } else if (fileData.length > nub + 1) {
+            start(nub + 1)
+          } else {
+            console.log('结束！！')
+            cbJSON()
+          }
+        }
+      }, 1000)
     }
   }
 }

@@ -1,2 +1,3 @@
 wordpress.sql
 /node_modules/
+/site/wp-config.php

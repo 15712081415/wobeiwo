@@ -3,7 +3,8 @@ let request = require('request')
 let fs = require("fs");
 let path = require("path");
 let movie = {}
-let siteUrl = 'http://localhost:81/wordpress'
+let siteUrl = 'http://www.wobeiwo.cn'
+// let siteUrl = 'http://localhost:81/wordpress'
 let url = siteUrl + '/wp-json/wp/v2/'
 let updataID = []
 let articleData = {
@@ -51,7 +52,7 @@ let articleData = {
   });
 })()
 let g = (function(){
-	var uinfo = {username: 'lonny', password: '123456'},
+	var uinfo = {username: 'lonny', password: '15986849165bibi'},
 	tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
 	token = '',
 	doPostArticle = function(articleData = {}, cb, errCb) {
@@ -242,7 +243,7 @@ function start (nub = 0) {
             cbJSON()
           }
         }
-      }, 1000)
+      }, 2000)
     }
   }
 }

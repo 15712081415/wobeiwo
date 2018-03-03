@@ -199,7 +199,7 @@ function start (nub = 0) {
               updataID.push(res.id)
               forEachData()
             }, err => {
-              console.log('修改失败', err.data)
+              console.log('修改失败', err)
               forEachData()
             })
           } else {

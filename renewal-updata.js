@@ -185,7 +185,6 @@ function forEach1 (fileMoves, i1s) {
           type.push(classify[item])
           typeName.push(item)
         }
-<<<<<<< HEAD
       })
       if (typeName.length == 0) typeName = [fileMove.tages]
       let title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
@@ -194,16 +193,6 @@ function forEach1 (fileMoves, i1s) {
         if (titleName.indexOf('《' + fileMove.name[0] + '》') > -1 && (fileMove.name[1].split('更新')[0] ? titleName.indexOf(fileMove.name[1].split('[')[0]) > -1 : true)) {
               fileMove.id = movieList[titleName][0]
               console.log('已入库', titleName, fileMove.id)
-=======
-        function forEachData () {
-          console.log('forEachData:', file.length + '>' + (i1 + 1), fileData.length + '>' + (nub + 1))
-          if (file.length > i1 + 1) {
-            forEach1(file[i1 + 1], i1 + 1)
-          } else if (fileData.length > nub + 1) {
-            start(nub + 1)
-          } else {
-            cbJSON()
->>>>>>> c9e5f498d3eae82461dd4d51caa535b6080ef518
           }
       }
       if (fileMove.id) {
@@ -214,7 +203,6 @@ function forEach1 (fileMoves, i1s) {
           date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
           date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
         }
-<<<<<<< HEAD
         console.log('g.postArticle------------------------------->')
         g.postArticle(postData, res => {
           console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
@@ -253,9 +241,6 @@ function forEach1 (fileMoves, i1s) {
       }
     } else {
       forEachData()
-=======
-      }, 5000)
->>>>>>> c9e5f498d3eae82461dd4d51caa535b6080ef518
     }
   }, 2000)
 }

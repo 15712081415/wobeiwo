@@ -52,7 +52,7 @@ let articleData = {
   });
 })()
 let g = (function(){
-	var uinfo = {username: 'lonny', password: '15986849165bibi'},
+	var uinfo = {username: 'lonny', password: '123456'},
 	tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
 	token = '',
 	doPostArticle = function(articleData = {}, cb, errCb) {
@@ -193,7 +193,7 @@ function start (nub = 0) {
               date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
               date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
             }
-            console.log('g.postArticle------------------------------->')
+            console.log('g.postArticle--->', 'id:' + postData.id, fileMove.name[0])
             g.postArticle(postData, res => {
               console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
               updataID.push(res.id)
@@ -242,7 +242,7 @@ function start (nub = 0) {
             cbJSON()
           }
         }
-      }, 5000)
+      }, 1000)
     }
   }
 }

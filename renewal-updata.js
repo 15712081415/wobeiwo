@@ -3,8 +3,8 @@ let request = require('request')
 let fs = require("fs");
 let path = require("path");
 let movie = {}
+// let siteUrl = 'http://www.wobeiwo.cn'
 let siteUrl = 'http://localhost:81/wordpress'
-// let siteUrl = 'http://localhost:81/wordpress'
 let url = siteUrl + '/wp-json/wp/v2/'
 let updataID = []
 let articleData = {
@@ -56,6 +56,7 @@ let g = (function(){
 	tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
 	token = '',
 	doPostArticle = function(articleData = {}, cb, errCb) {
+    console.log('sssssss')
 		axios({
 			method: 'POST',
 			url: url+'posts' + (articleData.id ? '/' + articleData.id : ''),
@@ -68,12 +69,14 @@ let g = (function(){
     });
 	},
   postArticle = function(articleData = {}, cb, errCb) { // 提交文章
+    // token = ''
 		if (token) {
 			doPostArticle(articleData, cb, errCb)
 		} else {
 			axios.post(tokenApi, uinfo).then((result) => {
 				var res = result.data
         token = res.token
+        console.log('token', token)
 				doPostArticle(articleData, cb, errCb)
 			}).catch(err => {
         console.log(err)
@@ -242,7 +245,7 @@ function forEach1 (fileMoves, i1s) {
     } else {
       forEachData()
     }
-  }, 2000)
+  }, 100)
 }
 
 function forEachData () {

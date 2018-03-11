@@ -214,7 +214,11 @@ function getMovie (fileData) {
         }
       }
     }, null, function () {
-      
+      if (length - 1 > index) {
+        forEach1(fileData[index + 1], index + 1, length)
+      } else {
+        console.log('结束！！', (index + 1) + '/' + length)
+      }
     })
   }
 }

@@ -175,8 +175,20 @@ function submit () {
   }
   movie = JSON.parse(movie);
   sitcom = JSON.parse(sitcom);
-  fileData = [movie, sitcom]
-  start()
+  fileData = [movie, sitcom];
+  init()
+}
+function init () {
+  // 获取分类
+  g.getCategories({per_page: 100}, res => {
+    res.forEach((item, i) => {
+      classify[item.name] = item.id
+    })
+    for (let item in classify) {
+      console.log('sss', item, classify[item])
+    }
+    start()
+  })
 }
 // 开始
 function start (nubs = 0) {

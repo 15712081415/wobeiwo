@@ -20,59 +20,112 @@
       <label>最新连续剧：<textarea id="sitcom"></textarea></label>
     </div>
     <center>
-      <button onclick="submit">提交</button>
+      <button onclick="javascript:submit();">提交</button>
     </center>
   </div>
 </body>
 <script type="text/javascript">
-var siteUrl = location.hostname == 'www.wobeiwo.cn' ? '' : '/wordpress';
+var siteUrl = location.hostname.indexOf('wobeiwo') > -1 ? '' : 'http://localhost:81/wordpress';
 var url = siteUrl + '/wp-json/wp/v2/';
 var updataID = [];
+var nub = 0;
 var articleData = {
-	slug: 'mytest',
-	title: '解读特朗普访陆行程 习大大以超高规格接待给足特朗普面子？',
-	content: '中美交锋朝鲜和贸易 当台湾不再是习特议题还有戏唱吗？',
-	name: '杀手不冷', // 标题名称
-	status: 'publish', // 发布状态 publish, future, draft, pending, private
-	type: 'post',
-	date: '2017-11-05T10:07:46.847Z',
-	date_gmt: '2017-11-05T10:07:46.847Z', // 发布时间
-	author: 1, // 作者id
-	comment_status: 'open', // 是否开放评论 open, closed
-	featured_media: 13, // 特色图片id
-	ping_status: 'closed',
-	sticky: false, // 置顶
-	meta: [],
-	categories: [1], // 分类id
-	tags: [4] // 标签id
+  slug: 'mytest',
+  title: '解读特朗普访陆行程 习大大以超高规格接待给足特朗普面子？',
+  content: '中美交锋朝鲜和贸易 当台湾不再是习特议题还有戏唱吗？',
+  name: '杀手不冷', // 标题名称
+  status: 'publish', // 发布状态 publish, future, draft, pending, private
+  type: 'post',
+  date: '2017-11-05T10:07:46.847Z',
+  date_gmt: '2017-11-05T10:07:46.847Z', // 发布时间
+  author: 1, // 作者id
+  comment_status: 'open', // 是否开放评论 open, closed
+  featured_media: 13, // 特色图片id
+  ping_status: 'closed',
+  sticky: false, // 置顶
+  meta: [],
+  categories: [1], // 分类id
+  tags: [4] // 标签id
 };
+var g = (function(){
+  var uinfo = {username: 'lonny', password: '123456'},
+  tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
+  token = '',
+  doPostArticle = function(articleData = {}, cb, errCb) {
+    $.ajax({
+      method: 'POST',
+      url: url+'posts' + (articleData.id ? '/' + articleData.id : ''),
+      headers: {'Authorization': "Bearer " + token},
+      data: articleData,
+      success: function (res) {
+        cb(res);
+      },
+      error: function (err) {
+        errCb && errCb(err)
+      }
+    });
+  },
+  postArticle = function(articleData = {}, cb, errCb) { // 提交文章
+    if (token) {
+      doPostArticle(articleData, cb, errCb)
+    } else {
+      console.log('tokenApi', tokenApi)
+      $.ajax({
+        method: 'post',
+        url: tokenApi,
+        data: uinfo,
+        success: function (res) {
+          token = res.token;
+          doPostArticle(articleData, cb, errCb);
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      });
+    }
+  },
+  getCategories = function(params = {}, cb) { // 获取类目
+    $.ajax({
+      method: 'get',
+      url: url+'categories', // tags
+      params: params,
+      success: function (res) {
+        cb(res)
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+  }
+  return {
+    postArticle: postArticle,
+    getCategories: getCategories
+  }
+})();
+
 function submit () {
-  var movie = document.getElementById('movie').value
+  /*var movie = document.getElementById('movie').value
   var sitcom = document.getElementById('sitcom').value
   if (movie == '' || sitcom == '') {
     return;
   }
   movie = JSON.parse(movie);
-  sitcom = JSON.parse(sitcom);
-  var nub = 0;
-  function for_Each() {
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: articleData,
-      success: function success (res) {
-        nub++
-        callback(res)
-      },
-      dataType: 'json'
-    });
-    
-  }
-  function callback (res) {
-      setTimeout(function () {
-        if (nub < 20) for_Each()
-      }, 1000)
-  }
+  sitcom = JSON.parse(sitcom);*/
+  for_Each();
+}
+function for_Each() { 
+  g.postArticle(articleData, callback);
+}
+function callback (res) {
+    console.log('res', res, nub);
+    var t = setTimeout(function () {
+      if (nub < 20) {
+        for_Each();
+        nub++;
+      } else {
+        clearTimeout(t);
+      }
+    }, 1000)
 }
 </script>
 </html>

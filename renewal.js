@@ -5,6 +5,7 @@ let iconv = require('iconv-lite');
 let fs = require("fs");
 let path = require("path");
 let template = path.resolve('./template');
+let movieList = require(template + "/movie.json");
 let renewal = path.resolve('./renewal');
 let dateTime = '2018-02-25' || new Date().toJSON().slice(0,10) // 设置更新日期 [01-16]
 let urlM = {} // 过滤重复url请求
@@ -166,6 +167,12 @@ function getMovie (fileData) {
       })
       if (typeName.length == 0) typeName = [classifyFile[t]]
       data.title = '【' + typeName.join('/') + '】' + (data['◎年　　代'] ? data['◎年　　代'] + ' ' : '') + (data.name[1] ? (data.name[1].indexOf('集') > -1 ? ' 《' + data.name[0] + '》' + data.name[1] : data.name[1] + ' 《' + data.name[0] + '》') : ' 《' + data.name[0] + '》')
+      for (let titleName in movieList) {
+        if (titleName.indexOf('《' + data.name[0] + '》') > -1 && (data.name[1].split('更新')[0] ? titleName.indexOf(data.name[1].split('[')[0]) > -1 : true)) {
+              data.id = movieList[titleName][0]
+              console.log('已入库', titleName, data.id)
+          }
+      }
       data.download = []
       for(let k=0; k<$('#endText table tr').length;k++){
           let html = $('#endText table tr td').eq(k).html()

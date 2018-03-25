@@ -46,6 +46,36 @@ let classifyFile2 = [
   '微电影',
   '国语配音电影'
 ]
+
+// 备份文件backups
+(function() {
+  let url = path.resolve('backups/' + (new Date().toJSON().slice(0, 10)));
+  fs.exists(url,function(exists){
+      if(exists) {
+        // 有备份不做处理
+      } else {
+        fs.mkdir(url, function(err){
+          if (err) {
+            console.error(err);
+            return
+          }
+          // 读取文件目录
+          let list = path.resolve('template');
+          fs.readdir(list,function(err,files) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            files.forEach(function (filename) {
+              fs.writeFile(url + '/' + filename, fs.readFileSync(list + '/' + filename))
+            });
+          });
+        });
+      }
+  });
+})()
+
+
 let fileArr = [] // json文件
 let number = 0
 let nub = 0 // 0: 更新最新电影， 1：更新连续剧
@@ -212,8 +242,8 @@ function getMovie (fileData) {
       fileArr.push(data)
       number++
       if (number + 1 == fileData.length) {
-        fs.writeFile(renewal + '/最新更新'+ (nub == 0 ? '电影' : '连续剧') +'.json', JSON.stringify(fileArr));
-        fs.writeFile(renewal + '/'+ (nub == 0 ? '电影' : '连续剧') +'错误图片.json', JSON.stringify(errorImage));
+        fs.writeFileSync(renewal + '/最新更新'+ (nub == 0 ? '电影' : '连续剧') +'.json', JSON.stringify(fileArr));
+        fs.writeFileSync(renewal + '/'+ (nub == 0 ? '电影' : '连续剧') +'错误图片.json', JSON.stringify(errorImage));
         if (nub == 0) {
           nub = 1
           fileArr = []

@@ -2,6 +2,50 @@ let axios = require('axios')
 let request = require('request')
 let fs = require("fs");
 let path = require("path");
+//获取目录绝对路径
+let list = path.resolve('template'); // 列表
+let movieList = require(list + "/movie.json");
+//读取文件存储数组
+let fileArr = [];
+
+// json数据
+let fileData = [
+  path.resolve('renewal/最新更新电影.json'),
+  path.resolve('renewal/最新更新连续剧.json')
+]
+
+// 回写JSON
+function cbJSON() {
+  let movieType = {}
+  console.log('分析数据!!')
+  fileData.forEach(item => {
+    let arr = require(item)
+    arr.forEach((obj, i) => {
+      if (movieType[obj.tages]) {
+        movieType[obj.tages].push(obj)
+      } else {
+        movieType[obj.tages] = [obj]
+      }
+    })
+    console.log('回写数据!!')
+    for (let obj in movieType) {
+      let listJSON = require(list + '/' + obj + '.json')
+      console.log(obj, movieType[obj].length, listJSON.length)
+      listJSON = listJSON.concat(movieType[obj])
+      console.log(obj, movieType[obj].length, listJSON.length)
+      fs.writeFileSync(list + '/' + obj + '.json', JSON.stringify(listJSON));
+    }
+  })
+  fs.writeFileSync(list + '/movie.json', JSON.stringify(movieList));
+  fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
+  console.log('回写成功，运行结束！！')
+}
+cbJSON(); // 运行回写
+/*--------------------------------------旧------------------------------------------------------
+let axios = require('axios')
+let request = require('request')
+let fs = require("fs");
+let path = require("path");
 let movie = {}
 // let siteUrl = 'http://www.wobeiwo.cn'
 let siteUrl = 'http://localhost:81/wordpress'
@@ -152,6 +196,8 @@ let fileData = [
   path.resolve('renewal/最新更新电影.json'),
   path.resolve('renewal/最新更新连续剧.json')
 ]
+
+
 // 获取分类
 g.getCategories({per_page: 50}, res => {
   res.forEach((item, i) => {
@@ -162,7 +208,6 @@ g.getCategories({per_page: 50}, res => {
   }
   start()
 })
-
 // 开始
 let nub = 0;
 let file, fileMove;
@@ -284,3 +329,4 @@ function cbJSON() {
   fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
   console.log('运行结束！！')
 }
+---------------------------------------------------------------------------------------------------------*/

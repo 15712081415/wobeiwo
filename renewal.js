@@ -45,7 +45,7 @@ let classifyFile2 = [
   '经典高清电影',
   '微电影',
   '国语配音电影'
-]
+];
 
 // 备份文件backups
 (function() {
@@ -73,14 +73,14 @@ let classifyFile2 = [
         });
       }
   });
-})()
+})();
 
 
-let fileArr = [] // json文件
-let number = 0
-let nub = 0 // 0: 更新最新电影， 1：更新连续剧
-let curYear = new Date().getFullYear()
-analysis()
+let fileArr = []; // json文件
+let number = 0;
+let nub = 0; // 0: 更新最新电影， 1：更新连续剧
+let curYear = new Date().getFullYear();
+analysis();
 // 获取最新列表
 function analysis () {
   number = 0

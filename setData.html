@@ -6,9 +6,41 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-  .main{
-    margin: 50px auto;
-  }
+ *{
+  margin: 0;
+  padding: 0;
+}
+.main{
+  margin: 50px auto;
+  width: 500px;
+}
+.main>div{
+  margin-top: 10px;
+}
+label{
+  display: inline-block;
+  text-align: right;
+  float: left;
+  height: 32px;
+  line-height: 32px;
+  width: 25%;
+}
+textarea{
+  display: inline-block;
+  width: 60%;
+}
+button{
+  padding: 5px 16px;
+}
+#movie{
+
+}
+#sitcom{
+
+}
+.center {
+  text-align: center
+}
 </style>
 </head>
 <body>
@@ -29,6 +61,38 @@ var siteUrl = location.hostname.indexOf('wobeiwo') > -1 ? '' : 'http://localhost
 var url = siteUrl + '/wp-json/wp/v2/';
 var updataID = [];
 var nub = 0;
+var file, fileMove, fileData = [];
+var classifyFile = [
+  '2017最新电影',
+  '3D电影',
+  '动画电影',
+  '国剧',
+  '国语配音电影',
+  '微电影',
+  'MP4手机电影',
+  '日韩剧',
+  '日韩电影',
+  '欧美剧',
+  '港台电影',
+  '经典高清电影',
+  '综艺节目'
+]
+var classify = {
+  '2017最新电影': null,
+  '3D电影': null,
+  '动画电影': null,
+  '国剧': null,
+  '国语配音电影': null,
+  '微电影': null,
+  'MP4手机电影': null,
+  '日韩剧': null,
+  '日韩电影': null,
+  '欧美剧': null,
+  '港台电影': null,
+  '经典高清电影': null,
+  '综艺节目': null
+} // 分类ID
+
 var articleData = {
   slug: 'mytest',
   title: '解读特朗普访陆行程 习大大以超高规格接待给足特朗普面子？',
@@ -104,28 +168,117 @@ var g = (function(){
 })();
 
 function submit () {
-  /*var movie = document.getElementById('movie').value
+  var movie = document.getElementById('movie').value
   var sitcom = document.getElementById('sitcom').value
   if (movie == '' || sitcom == '') {
     return;
   }
   movie = JSON.parse(movie);
-  sitcom = JSON.parse(sitcom);*/
-  for_Each();
+  sitcom = JSON.parse(sitcom);
+  fileData = [movie, sitcom]
+  start()
 }
-function for_Each() { 
-  g.postArticle(articleData, callback);
+// 开始
+function start (nubs = 0) {
+  nub = nubs
+  // 读取文件目录
+  var files = fileData[nub]
+  analysis(files)
 }
-function callback (res) {
-    console.log('res', res, nub);
-    var t = setTimeout(function () {
-      if (nub < 20) {
-        for_Each();
-        nub++;
+function analysis (files) {
+  file = files
+  file.length > 0 && forEach1(file[0], 0)
+}
+function forEach1 (fileMoves, i1s) {
+  fileMove = fileMoves;
+  i1 = i1s;
+  setTimeout(() => {
+    if (fileMove.name && fileMove.name[0] && fileMove.time) {
+      var typeName = []
+      var type = [classify[fileMove.tages]]
+      var arr = fileMove['◎类　　别'] ? fileMove['◎类　　别'].split('/') : []
+      arr.forEach((item) => {
+        if (classify[item]) {
+          type.push(classify[item])
+          typeName.push(item)
+        }
+      })
+      if (typeName.length == 0) typeName = [fileMove.tages]
+      var title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
+      var title1 = (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
+      if (fileMove.id) {
+        var postData = {
+          id: fileMove.id,
+          title: title,
+          content: fileMove.html,
+          date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
+          date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
+        }
+        console.log('g.postArticle------------------------------->')
+        g.postArticle(postData, res => {
+          console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
+          updataID.push(res.id)
+          forEachData()
+        }, err => {
+          console.log('修改失败', err)
+          forEachData()
+        })
       } else {
-        clearTimeout(t);
+        var postData = {
+            slug: fileMove.name[0],
+            title: title,
+            content: fileMove.html, // fileMove.html
+            name: fileMove.name[0], // 标题名称
+            status: 'publish', // 发布状态 publish, future, draft, pending, private
+            type: 'post',
+            date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
+            date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(), // 发布时间
+            author: 1, // 作者id
+            comment_status: 'open', // 是否开放评论 open, closed
+            // featured_media: 13, // 特色图片id
+            ping_status: 'closed',
+            sticky: false, // 置顶
+            meta: [],
+            categories: type, // 分类id
+            tags: [] // 标签id
+          };
+          console.log('g.postArticle------------------------------->')
+          g.postArticle(postData, res => {
+            console.log('提交成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], fileData.length > nub + 1)
+            fileMove.id = res.id
+            forEachData()
+          })
       }
-    }, 1000)
+    } else {
+      forEachData()
+    }
+  }, 100)
 }
+
+function forEachData () {
+  console.log('forEachData:', file.length + '>' + (i1 + 1), fileData.length + '>' + (nub + 1))
+  if (file.length > i1 + 1) {
+    forEach1(file[i1 + 1], i1 + 1)
+  } else if (fileData.length > nub + 1) {
+    start(nub + 1)
+  } else {
+    console.log('结束！！')
+  }
+}
+
+// function for_Each() { 
+//   g.postArticle(articleData, callback);
+// }
+// function callback (res) {
+//     console.log('res', res, nub);
+//     var t = setTimeout(function () {
+//       if (nub < 20) {
+//         for_Each();
+//         nub++;
+//       } else {
+//         clearTimeout(t);
+//       }
+//     }, 1000)
+// }
 </script>
 </html>

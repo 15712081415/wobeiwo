@@ -14,7 +14,7 @@ let fileData = [
   path.resolve('renewal/最新更新连续剧.json')
 ]
 // 图片下标回写
-movieLength = require(template + "/movieLength.json");
+movieLength = require(list + "/movieLength.json");
 // 回写JSON
 function cbJSON() {
   let movieType = {}
@@ -33,8 +33,8 @@ function cbJSON() {
       let listJSON = require(list + '/' + obj + '.json')
       console.log(obj, movieType[obj].length, listJSON.length)
       listJSON = listJSON.concat(movieType[obj])
-      movieLength[obj] = listJSON.length;
-      console.log(obj, movieType[obj].length, listJSON.length)
+      movieLength[obj] = movieLength[obj] ? movieLength[obj] + movieType[obj].length : listJSON.length;
+      console.log(obj, movieType[obj].length, listJSON.length);
       fs.writeFileSync(list + '/' + obj + '.json', JSON.stringify(listJSON));
     }
     console.log('回写template数据结束!!')

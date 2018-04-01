@@ -204,8 +204,8 @@ function analysis (files) {
 }
 // 判断是否已添加
 function movieId (fileMoves, i1s) {
-  if (fileMove.name[0] && fileMoves.img[0]) {
-    var movieTitleName = fileMove.name[0]
+  if (fileMoves.name[0] && fileMoves.img[0]) {
+    var movieTitleName = fileMoves.name[0]
     console.log('查看电影id>>>>', movieTitleName)
     $.ajax({
       method: 'get',

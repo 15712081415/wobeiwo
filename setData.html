@@ -204,23 +204,8 @@ function analysis (files) {
 }
 // 判断是否已添加
 function movieId (fileMoves, i1s) {
-  var typeName = []
-  var type = [classify[fileMove.tages]]
-  var arr = fileMove['◎类　　别'] ? fileMove['◎类　　别'].split('/') : []
-  arr.forEach((item) => {
-    if (classify[item]) {
-      type.push(classify[item])
-      typeName.push(item)
-    }
-  })
-  if (typeName.length == 0) typeName = [fileMove.tages]
-  var movieTitleName = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
-  var b = /更新第\d*集/;
-  if (fileMoves.title.indexOf('[更新') > -1) {
-    b = /[更新.*]/
-  }
-  movieTitleName = fileMoves.title.replace(b, '');
-  if (movieTitleName.indexOf('》') > -1) {
+  var movieTitleName = fileMove.name[0]
+  if (movieTitleName.indexOf('》') > -1 && fileMoves.img[0]) {
     console.log('')
     $.ajax({
       method: 'get',
@@ -230,7 +215,13 @@ function movieId (fileMoves, i1s) {
       },
       success: function (res) {
         if (res.length > 0) {
-          fileMoves.id = res[0].id;
+          var name = fileMoves.img[0].split('/');
+          name = name[name.length - 1];
+          for (var i=0; i<res.length; i++){
+            if (JSON.stringify(res[i]).indexOf(name) > -1){
+              fileMoves.id = res[i].id;
+            }
+          }
         }
         forEach1(fileMoves, i1s);
       },

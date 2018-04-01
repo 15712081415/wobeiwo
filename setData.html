@@ -206,6 +206,22 @@ function analysis (files) {
 function movieId (fileMoves, i1s) {
   if (fileMoves.name[0] && fileMoves.img[0]) {
     var movieTitleName = fileMoves.name[0]
+    var typeName = []
+    var type = [classify[fileMoves.tages]]
+    var arr = fileMoves['◎类　　别'] ? fileMoves['◎类　　别'].split('/') : []
+    arr.forEach((item) => {
+      if (classify[item]) {
+        type.push(classify[item])
+        typeName.push(item)
+      }
+    })
+    if (typeName.length == 0) typeName = [fileMoves.tages]
+    var title = '【' + typeName.join('/') + '】' + (fileMoves['◎年　　代'] || '') + ' ' + (fileMoves.name[1] ? (fileMoves.name[1].indexOf('集') > -1 ? ' 《' + fileMoves.name[0] + '》' + fileMoves.name[1] : fileMoves.name[1] + ' 《' + fileMoves.name[0] + '》') : ' 《' + fileMoves.name[0] + '》')
+    if (title.indexOf('更新第') > -1) {
+      title = /更新第.*集/.exec(title)[0] || title;
+    } else if (title.indexOf('[') > -1) {
+      title = /[.*]/.exec(title)[0] || title;
+    }
     console.log('查看电影id>>>>', movieTitleName)
     $.ajax({
       method: 'get',
@@ -218,8 +234,16 @@ function movieId (fileMoves, i1s) {
           var name = fileMoves.img[0].split('/');
           name = name[name.length - 1];
           for (var i=0; i<res.length; i++){
-            if (JSON.stringify(res[i]).indexOf(name) > -1){
-              fileMoves.id = res[i].id;
+            if (typeof title == 'string') {
+              if (res[i].title.rendered.indexOf(title) > -1){
+                  fileMoves.id = res[i].id;
+                }
+            } else if (Array.isArray(title)) {
+              for(var j = 0;j< title.length; j++) {
+                if (res[i].title.rendered.indexOf(title[j]) > -1){
+                  fileMoves.id = res[i].id;
+                }
+              }
             }
           }
         }
@@ -238,18 +262,18 @@ function forEach1 (fileMoves, i1s) {
   i1 = i1s;
   setTimeout(() => {
     if (fileMove.name && fileMove.name[0] && fileMove.time) {
-      var typeName = []
-      var type = [classify[fileMove.tages]]
-      var arr = fileMove['◎类　　别'] ? fileMove['◎类　　别'].split('/') : []
+      var typeName = [];
+      var type = [classify[fileMove.tages]];
+      var arr = fileMove['◎类　　别'] ? fileMove['◎类　　别'].split('/') : [];
       arr.forEach((item) => {
         if (classify[item]) {
-          type.push(classify[item])
-          typeName.push(item)
-        }
-      })
-      if (typeName.length == 0) typeName = [fileMove.tages]
-      var title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
-      var title1 = (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
+          type.push(classify[item]);
+          typeName.push(item);
+        };
+      });
+      if (typeName.length == 0) typeName = [fileMove.tages];
+      var title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》');
+      var title1 = (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》');
       if (fileMove.id) {
         var postData = {
           id: fileMove.id,
@@ -261,11 +285,11 @@ function forEach1 (fileMoves, i1s) {
         console.log('g.postArticle------------------------------->')
         g.postArticle(postData, res => {
           console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
-          updataID.push(res.id)
-          forEachData()
+          updataID.push(res.id);
+          forEachData();
         }, err => {
-          console.log('修改失败', err)
-          forEachData()
+          console.log('修改失败', err);
+          forEachData();
         })
       } else {
         var postData = {
@@ -289,14 +313,14 @@ function forEach1 (fileMoves, i1s) {
           console.log('g.postArticle------------------------------->', postData)
           g.postArticle(postData, res => {
             console.log('提交成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], fileData.length > nub + 1)
-            fileMove.id = res.id
-            forEachData()
+            fileMove.id = res.id;
+            forEachData();
           })
       }
     } else {
-      forEachData()
+      forEachData();
     }
-  }, 100)
+  }, 100);
 }
 
 function forEachData () {

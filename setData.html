@@ -220,7 +220,7 @@ function movieId (fileMoves, i1s) {
     if (title.indexOf('更新第') > -1) {
       title = /更新第.*集/.exec(title)[0] || title;
     } else if (title.indexOf('[') > -1) {
-      title = /[.*]/.exec(title)[0] || title;
+      title = /\[.*\]/.exec(title)[0] || title;
     }
     console.log('查看电影id>>>>', movieTitleName, title)
     $.ajax({

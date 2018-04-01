@@ -240,11 +240,15 @@ function movieId (fileMoves, i1s) {
                   console.log('res.tit:', res[i].title.rendered)
                 }
             } else if (Array.isArray(title)) {
+              var flag = true;
               for(var j = 0;j< title.length; j++) {
-                if (res[i].title.rendered.indexOf(title[j]) > -1){
-                  fileMoves.id = res[i].id;
-                  console.log('res.tit:', res[i].title.rendered)
+                if (res[i].title.rendered.indexOf(title[j]) == -1){
+                  flag = false;
                 }
+              }
+              if (flag) {
+                fileMoves.id = res[i].id;
+                console.log('res.tit:', res[i].title.rendered);
               }
             }
           }

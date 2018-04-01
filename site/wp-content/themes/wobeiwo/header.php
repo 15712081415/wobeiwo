@@ -84,7 +84,7 @@ if (is_home()){
         	    );
         	echo strip_tags(wp_nav_menu( $menuParameters ), '<a>' );*/
             ?>
-            <a href="<?php echo $site_url;?>/category/2017最新电影">2017最新电影</a>
+            <a href="<?php echo $site_url;?>/category/2018最新电影">2018最新电影</a>
             <a href="<?php echo $site_url;?>/category/3D电影">3D电影</a>
             <a href="<?php echo $site_url;?>/category/MP4手机电影">MP4手机电影</a>
             <a href="<?php echo $site_url;?>/category/动画电影">动画电影</a>

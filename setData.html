@@ -204,9 +204,9 @@ function analysis (files) {
 }
 // 判断是否已添加
 function movieId (fileMoves, i1s) {
-  var movieTitleName = fileMove.name[0]
-  if (movieTitleName.indexOf('》') > -1 && fileMoves.img[0]) {
-    console.log('')
+  if (fileMove.name[0] && fileMoves.img[0]) {
+    var movieTitleName = fileMove.name[0]
+    console.log('查看电影id>>>>', movieTitleName)
     $.ajax({
       method: 'get',
       url: movieIdUrl,
@@ -230,7 +230,7 @@ function movieId (fileMoves, i1s) {
       }
     });
   } else {
-    console.log('')
+    console.log('数据不全跳过','电影：' + fileMove.name[0] , '图片:' + fileMoves.img[0])
   }
 }
 function forEach1 (fileMoves, i1s) {

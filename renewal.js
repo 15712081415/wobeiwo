@@ -9,7 +9,7 @@ let template = path.resolve('./template');
 let renewal = path.resolve('./renewal');
 let dateTime = '2018-02-25' || new Date().toJSON().slice(0,10) // 设置更新日期 [01-16]
 let urlM = {} // 过滤重复url请求
-let movieLength = {} // 当前电影数
+let movieLength = require(template + "/movieLength.json"); // 当前电影数
 let movieMap = {}
 let fileUrl = [
   'http://www.hao6v.com/gvod/zx.html', // 最新电影

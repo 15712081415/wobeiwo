@@ -13,7 +13,8 @@ let fileData = [
   path.resolve('renewal/最新更新电影.json'),
   path.resolve('renewal/最新更新连续剧.json')
 ]
-
+// 图片下标回写
+movieLength = require(template + "/movieLength.json");
 // 回写JSON
 function cbJSON() {
   let movieType = {}
@@ -27,18 +28,25 @@ function cbJSON() {
         movieType[obj.tages] = [obj]
       }
     })
-    console.log('回写数据!!')
+    console.log('开始回写template数据!!')
     for (let obj in movieType) {
       let listJSON = require(list + '/' + obj + '.json')
       console.log(obj, movieType[obj].length, listJSON.length)
       listJSON = listJSON.concat(movieType[obj])
+      movieLength[obj] = listJSON.length;
       console.log(obj, movieType[obj].length, listJSON.length)
       fs.writeFileSync(list + '/' + obj + '.json', JSON.stringify(listJSON));
     }
+    console.log('回写template数据结束!!')
   })
+  console.log('开始回写movie数据!!')
   fs.writeFileSync(list + '/movie.json', JSON.stringify(movieList));
+  console.log('回写movie数据结束!!')
+  console.log('开始回写movieLength数据!!')
+  fs.writeFileSync(list + '/movieLength.json', JSON.stringify(movieLength));
+  console.log('回写movieLength数据结束!!')
   // fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
-  console.log('回写成功，运行结束！！')
+  console.log('运行结束！！')
 }
 cbJSON(); // 运行回写
 /*--------------------------------------旧------------------------------------------------------

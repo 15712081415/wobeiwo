@@ -222,7 +222,7 @@ function movieId (fileMoves, i1s) {
     } else if (title.indexOf('[') > -1) {
       title = /[.*]/.exec(title)[0] || title;
     }
-    console.log('查看电影id>>>>', movieTitleName)
+    console.log('查看电影id>>>>', movieTitleName, title)
     $.ajax({
       method: 'get',
       url: movieIdUrl,
@@ -237,11 +237,13 @@ function movieId (fileMoves, i1s) {
             if (typeof title == 'string') {
               if (res[i].title.rendered.indexOf(title) > -1){
                   fileMoves.id = res[i].id;
+                  console.log('res.tit:', res[i].title.rendered)
                 }
             } else if (Array.isArray(title)) {
               for(var j = 0;j< title.length; j++) {
                 if (res[i].title.rendered.indexOf(title[j]) > -1){
                   fileMoves.id = res[i].id;
+                  console.log('res.tit:', res[i].title.rendered)
                 }
               }
             }

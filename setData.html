@@ -59,6 +59,7 @@ button{
 <script type="text/javascript">
 var siteUrl = location.hostname.indexOf('wobeiwo') > -1 ? '' : 'http://localhost:81/wordpress';
 var url = siteUrl + '/wp-json/wp/v2/';
+var movieIdUrl = siteUrl + 'posts?search=';
 var updataID = [];
 var nub = 0;
 var file, fileMove, fileData = [];
@@ -152,7 +153,7 @@ var g = (function(){
     $.ajax({
       method: 'get',
       url: url+'categories', // tags
-      params: params,
+      data: params,
       success: function (res) {
         cb(res)
       },
@@ -200,6 +201,32 @@ function start (nubs = 0) {
 function analysis (files) {
   file = files
   file.length > 0 && forEach1(file[0], 0)
+}
+// 判断是否已添加
+function movieId (fileMoves, i1s) {
+  var movieTitleName = '';
+  var b = /更新第\d*集/;
+  if (fileMoves.title.indexOf('[更新') > -1) {
+    b = /[更新.*]/
+  }
+  movieTitleName = fileMoves.title.replace(b, '');
+  if (movieTitleName.indexOf('》') > -1) {
+    $.ajax({
+      method: 'get',
+      url: movieIdUrl + movieTitleName,
+      success: function (res) {
+        if (res.length > 0) {
+          fileMoves.id = res[0].id;
+        }
+        forEach1(fileMoves, i1s);
+      },
+      error: function (err) {
+        console.error(err);
+      }
+    });
+  } else {
+    console.log('')
+  }
 }
 function forEach1 (fileMoves, i1s) {
   fileMove = fileMoves;
@@ -270,7 +297,7 @@ function forEach1 (fileMoves, i1s) {
 function forEachData () {
   console.log('forEachData:', file.length + '>' + (i1 + 1), fileData.length + '>' + (nub + 1))
   if (file.length > i1 + 1) {
-    forEach1(file[i1 + 1], i1 + 1)
+    movieId(file[i1 + 1], i1 + 1)
   } else if (fileData.length > nub + 1) {
     start(nub + 1)
   } else {

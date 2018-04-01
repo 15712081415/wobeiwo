@@ -37,7 +37,7 @@ function cbJSON() {
     }
   })
   fs.writeFileSync(list + '/movie.json', JSON.stringify(movieList));
-  fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
+  // fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
   console.log('回写成功，运行结束！！')
 }
 cbJSON(); // 运行回写

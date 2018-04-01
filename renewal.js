@@ -17,7 +17,7 @@ let fileUrl = [
 ]
 let errorImage = []
 let classifyFile = [
-  '2017最新电影',
+  '2018最新电影',
   '日韩电影',
   '港台电影',
   '综艺节目',
@@ -32,7 +32,7 @@ let classifyFile = [
   '国语配音电影'
 ]
 let classifyFile2 = [
-  '2017最新电影',
+  '2018最新电影',
   '日韩电影',
   '港台电影',
   '综艺',

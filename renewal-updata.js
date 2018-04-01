@@ -17,7 +17,7 @@ let fileData = [
 movieLength = require(list + "/movieLength.json");
 // 回写JSON
 function cbJSON() {
-  let movieType = {}
+  let movieType = {};
   console.log('分析数据!!')
   fileData.forEach(item => {
     let arr = require(item)

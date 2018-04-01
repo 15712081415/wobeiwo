@@ -59,7 +59,7 @@ button{
 <script type="text/javascript">
 var siteUrl = location.hostname.indexOf('wobeiwo') > -1 ? '' : 'http://localhost:81/wordpress';
 var url = siteUrl + '/wp-json/wp/v2/';
-var movieIdUrl = url + 'posts?search=';
+var movieIdUrl = url + 'posts';
 var updataID = [];
 var nub = 0;
 var file, fileMove, fileData = [];
@@ -211,9 +211,13 @@ function movieId (fileMoves, i1s) {
   }
   movieTitleName = fileMoves.title.replace(b, '');
   if (movieTitleName.indexOf('》') > -1) {
+    console.log('')
     $.ajax({
       method: 'get',
-      url: movieIdUrl + movieTitleName,
+      url: movieIdUrl,
+      data: {
+        search: movieTitleName
+      },
       success: function (res) {
         if (res.length > 0) {
           fileMoves.id = res[0].id;

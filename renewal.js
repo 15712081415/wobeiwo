@@ -186,17 +186,30 @@ function getMovie (fileData) {
           str.indexOf('◎简　　介') >  -1 && (data['◎简　　介'] = str.split('◎简　　介')[1].split('◎')[0].trim());
       }
       console.log('年代', data['◎年　　代'])
-      let typeName = []
-      let type = [classifyFile2[classifyFile[t]]]
-      let arr = data['◎类　　别'] ? data['◎类　　别'].split('/') : []
+      // let typeName = []
+      // let type = [classifyFile2[classifyFile[t]]]
+      // let arr = data['◎类　　别'] ? data['◎类　　别'].split('/') : []
+      // arr.forEach((item) => {
+      //   if (classifyFile2[item]) {
+      //     type.push(classifyFile2[item])
+      //     typeName.push(item)
+      //   }
+      // })
+      // if (typeName.length == 0) typeName = [classifyFile[t]]
+      // data.title = '【' + typeName.join('/') + '】' + (data['◎年　　代'] ? data['◎年　　代'] + ' ' : '') + (data.name[1] ? (data.name[1].indexOf('集') > -1 ? ' 《' + data.name[0] + '》' + data.name[1] : data.name[1] + ' 《' + data.name[0] + '》') : ' 《' + data.name[0] + '》')
+      
+      var typeName = []
+      var type = [classify[fileMove.tages]]
+      var arr = data['◎类　　别'] ? data['◎类　　别'].split('/') : []
       arr.forEach((item) => {
-        if (classifyFile2[item]) {
-          type.push(classifyFile2[item])
+        if (classify[item]) {
+          type.push(classify[item])
           typeName.push(item)
         }
       })
-      if (typeName.length == 0) typeName = [classifyFile[t]]
-      data.title = '【' + typeName.join('/') + '】' + (data['◎年　　代'] ? data['◎年　　代'] + ' ' : '') + (data.name[1] ? (data.name[1].indexOf('集') > -1 ? ' 《' + data.name[0] + '》' + data.name[1] : data.name[1] + ' 《' + data.name[0] + '》') : ' 《' + data.name[0] + '》')
+      if (typeName.length == 0) typeName = [data.tages]
+      data.title = '【' + typeName.join('/') + '】' + (data['◎年　　代'] || '') + ' ' + (data.name[1] ? (data.name[1].indexOf('集') > -1 ? ' 《' + data.name[0] + '》' + data.name[1] : data.name[1] + ' 《' + data.name[0] + '》') : ' 《' + data.name[0] + '》')
+      
       // for (let titleName in movieList) {
       //   if (titleName.indexOf('《' + data.name[0] + '》') > -1 && (data.name[1].split('更新')[0] ? titleName.indexOf(data.name[1].split('[')[0]) > -1 : true)) {
       //         data.id = movieList[titleName][0]

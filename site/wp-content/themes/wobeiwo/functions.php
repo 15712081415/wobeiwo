@@ -161,7 +161,19 @@ function cmp_breadcrumbs() {
 
 
 function pagination($query_string){
-	global $posts_per_page, $paged;
+	global $wp_query;
+ 
+	$big = 999999999; // 需要一个不太可能的整数
+ 
+	$pagination_links = paginate_links( array(
+		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format' => '?paged=%#%',
+		'current' => max( 1, get_query_var('paged') ),
+		'total' => $wp_query->max_num_pages
+	) );
+ 
+	echo $pagination_links;
+	/*global $posts_per_page, $paged;
 	$my_query = new WP_Query($query_string ."&posts_per_page=-1");
 	$total_posts = $my_query->post_count;
 	if(empty($paged))$paged = 1;
@@ -182,5 +194,5 @@ function pagination($query_string){
 		echo ($paged < $pages && $showitems < $pages) ? "<a href='".get_pagenum_link($next)."'>下一页 »</a>" :"";
 		echo "<a style='margin-left:5px;' href='".get_pagenum_link($pages)."'>末页</a>";
 		echo "</span></p>\n";
-    }
+    }*/
 }

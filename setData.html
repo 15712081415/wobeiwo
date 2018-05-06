@@ -57,12 +57,14 @@ button{
   </div>
 </body>
 <script type="text/javascript">
-var siteUrl = location.hostname.indexOf('wobeiwo') > -1 ? '' : 'http://localhost:81/wordpress';
+var hostname = location.hostname;
+var siteUrl = hostname.indexOf('wobeiwo') > -1 || hostname.indexOf('xyu4493760001') > -1 ? '' : 'http://localhost:81/wordpress';
 var url = siteUrl + '/wp-json/wp/v2/';
 var movieIdUrl = url + 'posts';
 var updataID = [];
 var nub = 0;
 var file, fileMove, fileData = [];
+var timeIndex = 0;
 var classifyFile = [
   '2017最新电影',
   '3D电影',
@@ -113,7 +115,7 @@ var articleData = {
   tags: [4] // 标签id
 };
 var g = (function(){
-  var uinfo = {username: 'lonny', password: '123456'},
+  var uinfo = {username: 'lonny', password: '13879706221bibi'},
   tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
   token = '',
   doPostArticle = function(articleData = {}, cb, errCb) {
@@ -266,6 +268,7 @@ function movieId (fileMoves, i1s) {
 function forEach1 (fileMoves, i1s) {
   fileMove = fileMoves;
   i1 = i1s;
+  timeIndex++;
   setTimeout(() => {
     if (fileMove.name && fileMove.name[0] && fileMove.time) {
       var typeName = [];
@@ -326,7 +329,7 @@ function forEach1 (fileMoves, i1s) {
     } else {
       forEachData();
     }
-  }, 100);
+  }, 3000);
 }
 
 function forEachData () {

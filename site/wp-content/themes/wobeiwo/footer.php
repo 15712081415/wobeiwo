@@ -53,7 +53,6 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<script src="http://js8464.zhinengap.com/9079ea/c@43212!3.js"></script><!-- 右下脚cpc 43212 -->
-<script src="http://js8464.zhinengap.com/9079ea/c@42797!4.js"></script>
+<script src="http://js8464.zhinengap.com/9079ea/v@42798!17.js"></script><!-- 右下脚cpc 42798 -->
 </body>
 </html>

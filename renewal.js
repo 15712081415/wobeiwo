@@ -127,17 +127,8 @@ function getMovie (fileData) {
         })
         t = i
       })()
-      let movie = require(template + '/' + classifyFile[t] + '.json')
-      let data = item
-      movie.forEach(M => {
-        if (M.name[0] == item.name[0]) {
-          M.time = item.time
-          M.name[1] = item.name[1] || ''
-          data = M
-        }
-      })
+      let data = item;
       data.tages = classifyFile[t]
-      if (!movieLength[data.tages]) movieLength[data.tages] = movie.length - 1      
       if (!movieMap[data.tages]) {
         movieMap[data.tages] = new Map()
         movieMap[data.tages].set(index, data.title)

@@ -113,7 +113,7 @@ let g = (function(){
 	}
 })()
 let classifyFile = [
-  '2017最新电影',
+  '2018最新电影',
   '3D电影',
   '动画电影',
   '国剧',
@@ -128,7 +128,7 @@ let classifyFile = [
   '综艺节目'
 ]
 let classify = {
-  '2017最新电影': null,
+  '2018最新电影': null,
   '3D电影': null,
   '动画电影': null,
   '国剧': null,

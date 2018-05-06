@@ -201,7 +201,7 @@ function movieId (fileMoves, i1s) {
     } else if (title.indexOf('[') > -1) {
       title = /\[.*\]/.exec(title)[0] || title;
     }
-    console.log('请求查看电影id>>>>', movieTitleName, title, movieIdUrl)
+    console.log('请求查看电影id>>>>', movieTitleName, title, movieIdUrl);
     axios({
 			method: 'get',
 			url: movieIdUrl, // tags
@@ -209,6 +209,7 @@ function movieId (fileMoves, i1s) {
         search: movieTitleName
       }
 		}).then(function (res) {
+        res = res.data;
         if (res.length > 0) {
           var name = fileMoves.img[0].split('/');
           name = name[name.length - 1];
@@ -232,6 +233,7 @@ function movieId (fileMoves, i1s) {
             }
           }
         }
+        console.log('fileMoves', fileMoves)
         forEach1(fileMoves, i1s);
     });
   } else {

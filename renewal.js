@@ -155,7 +155,7 @@ function getMovie (fileData) {
       name1 = data.img[0] ? data.img[0].split('/') : '.'
       name2 = name1[name1.length - 1].split('.')
       name3 = name2[name2.length - 1]
-      data.imageName = t + '_' + data.index + '_0.' + name3 || '';
+      data.imageName = t + '_' + data.index + '_0.' + (name3 == 'png' ? 'png' : 'jpg');
       (function (data) {
         getHtml(data.img[0], body => {
           write(data.imageName, yearMonth, body)

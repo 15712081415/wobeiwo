@@ -2,63 +2,12 @@ let axios = require('axios')
 let request = require('request')
 let fs = require("fs");
 let path = require("path");
-//获取目录绝对路径
-let list = path.resolve('template'); // 列表
-let movieList = require(list + "/movie.json");
-//读取文件存储数组
-let fileArr = [];
-
-// json数据
-let fileData = [
-  path.resolve('renewal/最新更新电影.json'),
-  path.resolve('renewal/最新更新连续剧.json')
-]
-// 图片下标回写
-movieLength = require(list + "/movieLength.json");
-// 回写JSON
-function cbJSON() {
-  let movieType = {};
-  console.log('分析数据!!')
-  fileData.forEach(item => {
-    let arr = require(item)
-    arr.forEach((obj, i) => {
-      if (movieType[obj.tages]) {
-        movieType[obj.tages].push(obj)
-      } else {
-        movieType[obj.tages] = [obj]
-      }
-    })
-    console.log('开始回写template数据!!')
-    for (let obj in movieType) {
-      let listJSON = require(list + '/' + obj + '.json')
-      console.log(obj, movieType[obj].length, listJSON.length)
-      listJSON = listJSON.concat(movieType[obj])
-      movieLength[obj] = movieLength[obj] ? movieLength[obj] + movieType[obj].length : listJSON.length;
-      console.log(obj, movieType[obj].length, listJSON.length);
-      fs.writeFileSync(list + '/' + obj + '.json', JSON.stringify(listJSON));
-    }
-    console.log('回写template数据结束!!')
-  })
-  console.log('开始回写movie数据!!')
-  fs.writeFileSync(list + '/movie.json', JSON.stringify(movieList));
-  console.log('回写movie数据结束!!')
-  console.log('开始回写movieLength数据!!')
-  fs.writeFileSync(list + '/movieLength.json', JSON.stringify(movieLength));
-  console.log('回写movieLength数据结束!!')
-  // fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
-  console.log('运行结束！！')
-}
-cbJSON(); // 运行回写
-/*--------------------------------------旧------------------------------------------------------
-let axios = require('axios')
-let request = require('request')
-let fs = require("fs");
-let path = require("path");
-let movie = {}
-// let siteUrl = 'http://www.wobeiwo.cn'
-let siteUrl = 'http://localhost:81/wordpress'
-let url = siteUrl + '/wp-json/wp/v2/'
-let updataID = []
+let movie = {};
+let siteUrl = 'http://www.wobeiwo.cn';
+// let siteUrl = 'http://localhost:81/wordpress';
+let url = siteUrl + '/wp-json/wp/v2/';
+let movieIdUrl = url + 'posts';
+let updataID = [];
 let articleData = {
 	slug: 'mytest',
 	title: '解读特朗普访陆行程 习大大以超高规格接待给足特朗普面子？',
@@ -77,6 +26,7 @@ let articleData = {
 	categories: [1], // 分类id
 	tags: [4] // 标签id
 };
+// 备份
 (function() {
   let url = path.resolve('backups/' + (new Date().toJSON().slice(0, 10)));
   fs.exists(url,function(exists){
@@ -104,7 +54,7 @@ let articleData = {
   });
 })()
 let g = (function(){
-	var uinfo = {username: 'lonny', password: '123456'},
+	var uinfo = {username: 'lonny', password: '13879706221bibi'},
 	tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
 	token = '',
 	doPostArticle = function(articleData = {}, cb, errCb) {
@@ -195,7 +145,7 @@ let classify = {
 
 //获取目录绝对路径
 let list = path.resolve('template'); // 列表
-let movieList = require(list + "/movie.json");
+let movieLength = require(list + "/movieLength.json");
 //读取文件存储数组
 let fileArr = [];
 
@@ -227,10 +177,70 @@ function start (nubs = 0) {
 }
 function analysis (files) {
   file = files
-  file.length > 0 && forEach1(file[0], 0)
+  file.length > 0 && movieId(file[0], 0)
 }
+
+// 判断是否已添加
+function movieId (fileMoves, i1s) {
+  console.log('判断是否已添加!');
+  if (fileMoves.name[0] && fileMoves.img[0]) {
+    var movieTitleName = fileMoves.name[0]
+    var typeName = []
+    var type = [classify[fileMoves.tages]]
+    var arr = fileMoves['◎类　　别'] ? fileMoves['◎类　　别'].split('/') : []
+    arr.forEach((item) => {
+      if (classify[item]) {
+        type.push(classify[item])
+        typeName.push(item)
+      }
+    })
+    if (typeName.length == 0) typeName = [fileMoves.tages]
+    var title = '【' + typeName.join('/') + '】' + (fileMoves['◎年　　代'] || '') + ' ' + (fileMoves.name[1] ? (fileMoves.name[1].indexOf('集') > -1 ? ' 《' + fileMoves.name[0] + '》' + fileMoves.name[1] : fileMoves.name[1] + ' 《' + fileMoves.name[0] + '》') : ' 《' + fileMoves.name[0] + '》')
+    if (title.indexOf('更新第') > -1) {
+      title = /更新第.*集/.exec(title)[0] || title;
+    } else if (title.indexOf('[') > -1) {
+      title = /\[.*\]/.exec(title)[0] || title;
+    }
+    console.log('请求查看电影id>>>>', movieTitleName, title)
+    axios({
+			method: 'get',
+			url: movieIdUrl, // tags
+			params: {
+        search: movieTitleName
+      }
+		}).then(function (res) {
+        if (res.length > 0) {
+          var name = fileMoves.img[0].split('/');
+          name = name[name.length - 1];
+          for (var i=0; i<res.length; i++){
+            if (typeof title == 'string') {
+              if (res[i].title.rendered.indexOf(title) > -1){
+                  fileMoves.id = res[i].id;
+                  console.log('res.tit:', res[i].title.rendered)
+                }
+            } else if (Array.isArray(title)) {
+              var flag = true;
+              for(var j = 0;j< title.length; j++) {
+                if (res[i].title.rendered.indexOf(title[j]) == -1){
+                  flag = false;
+                }
+              }
+              if (flag) {
+                fileMoves.id = res[i].id;
+                console.log('res.tit:', res[i].title.rendered);
+              }
+            }
+          }
+        }
+        forEach1(fileMoves, i1s);
+    });
+  } else {
+    console.log('数据不全跳过','电影：' + fileMove.name[0] , '图片:' + fileMoves.img[0])
+  }
+}
+
 function forEach1 (fileMoves, i1s) {
-  [fileMove, i1] = [fileMoves, i1s]
+  [fileMove, i1] = [fileMoves, i1s];
   setTimeout(() => {
     if (fileMove.name && fileMove.name[0] && fileMove.time) {
       let typeName = []
@@ -244,13 +254,6 @@ function forEach1 (fileMoves, i1s) {
       })
       if (typeName.length == 0) typeName = [fileMove.tages]
       let title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
-      let title1 = (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
-      for (let titleName in movieList) {
-        if (titleName.indexOf('《' + fileMove.name[0] + '》') > -1 && (fileMove.name[1].split('更新')[0] ? titleName.indexOf(fileMove.name[1].split('[')[0]) > -1 : true)) {
-              fileMove.id = movieList[titleName][0]
-              console.log('已入库', titleName, fileMove.id)
-          }
-      }
       if (fileMove.id) {
         let postData = {
           id: fileMove.id,
@@ -259,7 +262,7 @@ function forEach1 (fileMoves, i1s) {
           date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
           date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
         }
-        console.log('g.postArticle------------------------------->')
+        console.log('g.postArticle------------------->')
         g.postArticle(postData, res => {
           console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
           updataID.push(res.id)
@@ -290,8 +293,7 @@ function forEach1 (fileMoves, i1s) {
           console.log('g.postArticle------------------------------->')
           g.postArticle(postData, res => {
             console.log('提交成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], fileData.length > nub + 1)
-            fileMove.id = res.id
-            movieList[title1] = [res.id, classify[fileMove.tages]]
+            fileMove.id = res.id;
             forEachData()
           })
       }
@@ -308,14 +310,15 @@ function forEachData () {
   } else if (fileData.length > nub + 1) {
     start(nub + 1)
   } else {
-    console.log('结束！！')
+    console.log('提交成功！运行回写JSON');
     cbJSON()
   }
 }
 
 // 回写JSON
 function cbJSON() {
-  let movieType = {} 
+  let movieType = {};
+  console.log('分析数据!!')
   fileData.forEach(item => {
     let arr = require(item)
     arr.forEach((obj, i) => {
@@ -325,16 +328,20 @@ function cbJSON() {
         movieType[obj.tages] = [obj]
       }
     })
+    console.log('开始回写template数据!!')
     for (let obj in movieType) {
       let listJSON = require(list + '/' + obj + '.json')
       console.log(obj, movieType[obj].length, listJSON.length)
       listJSON = listJSON.concat(movieType[obj])
-      console.log(obj, movieType[obj].length, listJSON.length)
+      movieLength[obj] = movieLength[obj] ? movieLength[obj] + movieType[obj].length : listJSON.length;
+      console.log(obj, movieType[obj].length, listJSON.length);
       fs.writeFileSync(list + '/' + obj + '.json', JSON.stringify(listJSON));
     }
+    console.log('回写template数据结束!!')
   })
-  fs.writeFileSync(list + '/movie.json', JSON.stringify(movieList));
-  fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
+  console.log('开始回写movieLength数据!!')
+  fs.writeFileSync(list + '/movieLength.json', JSON.stringify(movieLength));
+  console.log('回写movieLength数据结束!!')
+  // fs.writeFileSync('renewal/updataID.json', JSON.stringify(updataID));
   console.log('运行结束！！')
 }
----------------------------------------------------------------------------------------------------------*/

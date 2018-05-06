@@ -3,8 +3,8 @@ let request = require('request')
 let fs = require("fs");
 let path = require("path");
 let movie = {};
-let siteUrl = 'http://www.wobeiwo.cn';
-// let siteUrl = 'http://localhost:81/wordpress';
+// let siteUrl = 'http://www.wobeiwo.cn';
+let siteUrl = 'http://localhost:81/wordpress';
 let url = siteUrl + '/wp-json/wp/v2/';
 let movieIdUrl = url + 'posts';
 let updataID = [];
@@ -54,7 +54,7 @@ let articleData = {
   });
 })()
 let g = (function(){
-	var uinfo = {username: 'lonny', password: '13879706221bibi'},
+	var uinfo = {username: 'lonny', password: '15986849165bibi'},
 	tokenApi = siteUrl + '/wp-json/jwt-auth/v1/token',
 	token = '',
 	doPostArticle = function(articleData = {}, cb, errCb) {

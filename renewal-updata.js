@@ -233,7 +233,6 @@ function movieId (fileMoves, i1s) {
             }
           }
         }
-        console.log('fileMoves', fileMoves)
         forEach1(fileMoves, i1s);
     });
   } else {

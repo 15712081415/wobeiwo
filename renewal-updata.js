@@ -201,7 +201,7 @@ function movieId (fileMoves, i1s) {
     } else if (title.indexOf('[') > -1) {
       title = /\[.*\]/.exec(title)[0] || title;
     }
-    console.log('请求查看电影id>>>>', movieTitleName, title)
+    console.log('请求查看电影id>>>>', movieTitleName, title, movieIdUrl)
     axios({
 			method: 'get',
 			url: movieIdUrl, // tags
@@ -253,7 +253,7 @@ function forEach1 (fileMoves, i1s) {
         }
       })
       if (typeName.length == 0) typeName = [fileMove.tages]
-      let title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》')
+      let title = '【' + typeName.join('/') + '】' + (fileMove['◎年　　代'] || '') + ' ' + (fileMove.name[1] ? (fileMove.name[1].indexOf('集') > -1 ? ' 《' + fileMove.name[0] + '》' + fileMove.name[1] : fileMove.name[1] + ' 《' + fileMove.name[0] + '》') : ' 《' + fileMove.name[0] + '》');
       if (fileMove.id) {
         let postData = {
           id: fileMove.id,
@@ -262,7 +262,7 @@ function forEach1 (fileMoves, i1s) {
           date: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON(),
           date_gmt: (fileMove.time ? new Date(fileMove.time) : new Date()).toJSON() // 发布时间
         }
-        console.log('g.postArticle------------------->')
+        console.log('g.postArticle------------------->', fileMove.id, title)
         g.postArticle(postData, res => {
           console.log('修改成功 ->', (i1 + 1) + '/' + file.length, fileMove.tages, 'categories:' + type, fileMove.name[0], 'Update ID='+ res.id)
           updataID.push(res.id)
